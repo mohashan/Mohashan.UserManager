@@ -1,0 +1,8 @@
+﻿namespace Mohashan.UserManager.Application.Features.Users;
+
+public class UserTypeDto
+{
+    public Guid Id { get; set; }
+    public string Name { get; set; } = string.Empty;
+
+}
