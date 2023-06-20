@@ -1,4 +1,4 @@
-﻿namespace Mohashan.UserManager.Application.Features.Users;
+﻿namespace Mohashan.UserManager.Application.Features.Users.Queries.GetUserDetails;
 
 public class UserTypeDto
 {

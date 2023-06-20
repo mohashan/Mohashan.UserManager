@@ -15,4 +15,11 @@
     <ProjectReference Include="..\Mohashan.UserManager.Domain\Mohashan.UserManager.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Feature\Commands\" />
+    <Folder Include="Features\Group\Commands\" />
+    <Folder Include="Features\Group\Queries\" />
+    <Folder Include="Features\Users\Commands\CreateUser\" />
+  </ItemGroup>
+
 </Project>

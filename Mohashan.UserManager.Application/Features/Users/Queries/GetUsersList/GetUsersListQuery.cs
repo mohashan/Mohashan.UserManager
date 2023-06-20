@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mohashan.UserManager.Application.Features.Users;
+namespace Mohashan.UserManager.Application.Features.Users.Queries.GetUsersList;
 
-public class GetUsersListQuery:IRequest<List<UsersListVm>>
+public class GetUsersListQuery : IRequest<List<UsersListVm>>
 {
 }
 
