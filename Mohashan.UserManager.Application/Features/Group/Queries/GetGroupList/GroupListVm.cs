@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mohashan.UserManager.Application.Features.Feature.Queries.GetFeaturesList;
+namespace Mohashan.UserManager.Application.Features.Group.Queries.GetGroupList;
 
-public class FeaturesListVm
+public class GroupListVm
 {
     public Guid Id { get; set; }
     public string Name { get; set; } = string.Empty;
-    public string DataType { get; set; } = string.Empty;
 }
