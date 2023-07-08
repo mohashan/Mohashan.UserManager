@@ -12,5 +12,5 @@ public class UpdateUserCommand:IRequest
 {
     public Guid Id { get; set; }
     public string Name { get; set;} = string.Empty;
-    public int Type { get; set; }
+    public Guid Type { get; set; }
 }

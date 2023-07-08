@@ -10,9 +10,9 @@ namespace Mohashan.UserManager.Application.Features.Users.Commands.CreateUser;
 public class CreateUserCommand:IRequest<Guid>
 {
     public string Name { get; set; } = string.Empty;
-    public int Type { get; set; }
+    public Guid Type { get; set; }
     public override string ToString()
     {
-        return $"User {Name} of type {Type}";
+        return $"User name : {Name}";
     }
 }
