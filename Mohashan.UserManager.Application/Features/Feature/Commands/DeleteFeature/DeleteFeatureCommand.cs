@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Mohashan.UserManager.Application.Features.Feature.Commands.DeleteFeature;
 
-public class DeleteFeatureCommand:IRequest
+public class DeleteFeatureCommand : IRequest
 {
     public Guid Id { get; set; }
 }

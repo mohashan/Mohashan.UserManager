@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Mohashan.UserManager.Application.Contracts.Persistence;
+using Mohashan.UserManager.Application.Exceptions;
 
 namespace Mohashan.UserManager.Application.Features.Feature.Commands.CreateFeature;
 
@@ -16,6 +17,12 @@ public class CreateFeatureCommandHandler : IRequestHandler<CreateFeatureCommand,
     }
     public async Task<Guid> Handle(CreateFeatureCommand request, CancellationToken cancellationToken)
     {
+        var validator = new CreateFeatureCommandValidator();
+        var validatorResult = validator.Validate(request);
+        if (!validatorResult.IsValid)
+        {
+            throw new ValidationException(validatorResult);
+        }
         var feature = await _featureRepository.AddAsync(_mapper.Map<Domain.Entities.Feature>(request));
         return feature.Id;
     }

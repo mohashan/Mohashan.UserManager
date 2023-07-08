@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Mohashan.UserManager.Application.Features.Feature.Commands.DeleteFeature;
 using System;
 using System.Collections.Generic;
 using System.Linq;

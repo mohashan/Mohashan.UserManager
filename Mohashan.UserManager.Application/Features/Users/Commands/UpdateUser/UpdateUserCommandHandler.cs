@@ -8,15 +8,21 @@ namespace Mohashan.UserManager.Application.Features.Users.Commands.UpdateUser;
 public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand>
 {
     private readonly IMapper _mapper;
-    private readonly IAsyncRepository<User> _userRepository;
+    private readonly IUserRepository _userRepository;
 
-    public UpdateUserCommandHandler(IMapper mapper, IAsyncRepository<Domain.Entities.User> userRepository)
+    public UpdateUserCommandHandler(IMapper mapper, IUserRepository userRepository)
     {
         _mapper = mapper;
         _userRepository = userRepository;
     }
     public async Task<Unit> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
     {
+        var validator = new UpdateUserCommandValidator(_userRepository);
+        var validationResult = validator.Validate(request);
+        if(!validationResult.IsValid)
+        {
+            throw new Exceptions.ValidationException(validationResult);
+        }
         var userToUpdate = await _userRepository.GetByIdAsync(request.Id);
         _mapper.Map(request, userToUpdate, typeof(UpdateUserCommand), typeof(Domain.Entities.User));
         await _userRepository.UpdateAsync(userToUpdate);

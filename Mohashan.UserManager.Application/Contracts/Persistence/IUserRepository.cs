@@ -6,5 +6,6 @@ namespace Mohashan.UserManager.Application.Contracts.Persistence
     {
         Task<User> GetUserFeatures(Guid userId);
         Task<ICollection<User>> GetGroupUsers(Guid groupId);
+        Task<bool> UsernameIsUnique(string userName);
     }
 }
