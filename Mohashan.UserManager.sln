@@ -15,9 +15,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{C8F0C48D-7895-43D8-BF88-A6EDF90B9474}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mohashan.UserManager.Domain", "Mohashan.UserManager.Domain\Mohashan.UserManager.Domain.csproj", "{561A1046-D84F-4F13-8BA2-502E1902F176}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mohashan.UserManager.Domain", "Mohashan.UserManager.Domain\Mohashan.UserManager.Domain.csproj", "{561A1046-D84F-4F13-8BA2-502E1902F176}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mohashan.UserManager.Application", "Mohashan.UserManager.Application\Mohashan.UserManager.Application.csproj", "{21D4C938-DDC7-4808-9645-58BECDDC0E66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mohashan.UserManager.Application", "Mohashan.UserManager.Application\Mohashan.UserManager.Application.csproj", "{21D4C938-DDC7-4808-9645-58BECDDC0E66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mohashan.UserManager.Persistence", "Mohashan.UserManager.Persistence\Mohashan.UserManager.Persistence.csproj", "{8B8E2997-6A1C-40AC-B03E-35A1B104EE2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{21D4C938-DDC7-4808-9645-58BECDDC0E66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21D4C938-DDC7-4808-9645-58BECDDC0E66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21D4C938-DDC7-4808-9645-58BECDDC0E66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B8E2997-6A1C-40AC-B03E-35A1B104EE2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B8E2997-6A1C-40AC-B03E-35A1B104EE2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B8E2997-6A1C-40AC-B03E-35A1B104EE2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B8E2997-6A1C-40AC-B03E-35A1B104EE2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +50,7 @@ Global
 		{C8F0C48D-7895-43D8-BF88-A6EDF90B9474} = {3D69224D-6655-4B59-9F4D-4E82B2CC298E}
 		{561A1046-D84F-4F13-8BA2-502E1902F176} = {48B36242-20EF-43A9-8246-D5C6D90D667D}
 		{21D4C938-DDC7-4808-9645-58BECDDC0E66} = {48B36242-20EF-43A9-8246-D5C6D90D667D}
+		{8B8E2997-6A1C-40AC-B03E-35A1B104EE2C} = {492EE6A4-45D5-4220-A467-E5F79C317271}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E8A31FDB-BF23-4FCB-99D2-EA9E7E48FC3F}
