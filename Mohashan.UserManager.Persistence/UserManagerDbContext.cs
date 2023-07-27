@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal;
+using Mohashan.UserManager.Domain.Common;
 using Mohashan.UserManager.Domain.Entities;
 
 namespace Mohashan.UserManager.Persistence;
@@ -138,5 +139,29 @@ public class UserManagerDbContext:DbContext
 
         base.OnModelCreating(modelBuilder);
 
+    }
+
+    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        foreach (var entry in ChangeTracker.Entries<AuditableEntity>())
+        {
+            switch (entry.State)
+            {
+                case EntityState.Deleted:
+                    entry.Entity.IsDeleted = true;
+                    entry.Entity.DeletedDateTime = DateTime.Now;
+                    entry.State = EntityState.Modified;
+                    break;
+                case EntityState.Modified:
+                    entry.Entity.LastModifiedDateTime = DateTime.Now;
+                    break;
+                case EntityState.Added:
+                    entry.Entity.CreatedDateTime = DateTime.Now;
+                    break;
+                default:
+                    break;
+            }
+        }
+        return base.SaveChangesAsync(cancellationToken);
     }
 }
