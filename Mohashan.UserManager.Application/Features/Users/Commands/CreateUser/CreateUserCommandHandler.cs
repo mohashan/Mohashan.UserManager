@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Mohashan.UserManager.Application.Contracts.Infrastructure;
 using Mohashan.UserManager.Application.Contracts.Persistence;
 using Mohashan.UserManager.Application.Features.Group.Commands.CreateGroup;
 using Mohashan.UserManager.Application.Features.Users.Commands.DeleteUser;
@@ -29,6 +30,7 @@ public class CreateUserCommandHandler:IRequestHandler<CreateUserCommand,Guid>
             throw new Exceptions.ValidationException(validatorResult);
 
         var group = await _userRepository.AddAsync(_mapper.Map<Domain.Entities.User>(request));
+
         return group.Id;
     }
 }
