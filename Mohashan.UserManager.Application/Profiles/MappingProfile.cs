@@ -7,6 +7,9 @@ using Mohashan.UserManager.Application.Features.Group.Commands.CreateGroup;
 using Mohashan.UserManager.Application.Features.Group.Commands.UpdateGroup;
 using Mohashan.UserManager.Application.Features.Group.Queries.GetGroupDetails;
 using Mohashan.UserManager.Application.Features.Group.Queries.GetGroupList;
+using Mohashan.UserManager.Application.Features.Users.Commands.CreateUser;
+using Mohashan.UserManager.Application.Features.Users.Commands.DeleteUser;
+using Mohashan.UserManager.Application.Features.Users.Commands.UpdateUser;
 using Mohashan.UserManager.Application.Features.Users.Queries.GetGroupUsers;
 using Mohashan.UserManager.Application.Features.Users.Queries.GetUserDetails;
 using Mohashan.UserManager.Application.Features.Users.Queries.GetUserFeatures;
@@ -48,5 +51,10 @@ public class MappingProfile:Profile
         CreateMap<Feature, FeaturesListVm>().ReverseMap();
         CreateMap<Feature, CreateFeatureCommand>().ReverseMap();
         CreateMap<Feature, UpdateFeatureCommand>().ReverseMap();
+
+        CreateMap<User,CreateUserCommand>().ReverseMap();
+        CreateMap<User,UpdateUserCommand>().ReverseMap();
+        CreateMap<User,DeleteUserCommand>().ReverseMap();
+        CreateMap<User, CreateUserCommandResponse>().ReverseMap();
     }
 }

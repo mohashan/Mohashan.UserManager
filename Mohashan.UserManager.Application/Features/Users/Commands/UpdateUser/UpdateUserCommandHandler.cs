@@ -19,13 +19,15 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand>
     {
         var validator = new UpdateUserCommandValidator(_userRepository);
         var validationResult = validator.Validate(request);
-        if(!validationResult.IsValid)
+        if (!validationResult.IsValid)
         {
             throw new Exceptions.ValidationException(validationResult);
         }
         var userToUpdate = await _userRepository.GetByIdAsync(request.Id);
-        _mapper.Map(request, userToUpdate, typeof(UpdateUserCommand), typeof(Domain.Entities.User));
+        _mapper.Map(request, userToUpdate, typeof(UpdateUserCommand), typeof(User));
         await _userRepository.UpdateAsync(userToUpdate);
         return Unit.Value;
     }
+
+
 }

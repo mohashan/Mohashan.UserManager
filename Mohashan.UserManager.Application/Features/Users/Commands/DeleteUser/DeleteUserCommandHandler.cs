@@ -9,7 +9,7 @@ public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand>
 {
     private readonly IAsyncRepository<User> _userRepository;
 
-    public DeleteUserCommandHandler(IAsyncRepository<Mohashan.UserManager.Domain.Entities.User> userRepository)
+    public DeleteUserCommandHandler(IAsyncRepository<User> userRepository)
     {
         _userRepository = userRepository;
     }

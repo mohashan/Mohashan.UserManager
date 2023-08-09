@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Mohashan.UserManager.Application.Features.Users.Commands.CreateUser;
 
-public class CreateUserCommand:IRequest<Guid>
+public class CreateUserCommand:IRequest<CreateUserCommandResponse>
 {
     public string Name { get; set; } = string.Empty;
     public Guid Type { get; set; }
