@@ -7,5 +7,8 @@ namespace Mohashan.UserManager.Application.Contracts.Persistence
         Task<ICollection<Feature>> GetUserFeatures(Guid userId, int count = 10, int pageNum = 1);
         Task<ICollection<User>> GetGroupUsers(Guid groupId, int count = 10, int pageNum = 1);
         Task<bool> UsernameIsUnique(string userName);
+
+        Task<IReadOnlyList<User>> GetUserListWithTypeAsync();
+
     }
 }

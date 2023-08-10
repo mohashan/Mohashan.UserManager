@@ -13,6 +13,7 @@ using Mohashan.UserManager.Application.Features.Users.Commands.UpdateUser;
 using Mohashan.UserManager.Application.Features.Users.Queries.GetGroupUsers;
 using Mohashan.UserManager.Application.Features.Users.Queries.GetUserDetails;
 using Mohashan.UserManager.Application.Features.Users.Queries.GetUserFeatures;
+using Mohashan.UserManager.Application.Features.Users.Queries.GetUsersExport;
 using Mohashan.UserManager.Application.Features.Users.Queries.GetUsersList;
 using Mohashan.UserManager.Domain.Entities;
 using System;
@@ -56,5 +57,7 @@ public class MappingProfile:Profile
         CreateMap<User,UpdateUserCommand>().ReverseMap();
         CreateMap<User,DeleteUserCommand>().ReverseMap();
         CreateMap<User, CreateUserCommandResponse>().ReverseMap();
+
+        CreateMap<User, UserExportDto>().ReverseMap();
     }
 }

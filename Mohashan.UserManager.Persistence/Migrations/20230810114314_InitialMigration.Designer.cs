@@ -12,8 +12,8 @@ using Mohashan.UserManager.Persistence;
 namespace Mohashan.UserManager.Persistence.Migrations
 {
     [DbContext(typeof(UserManagerDbContext))]
-    [Migration("20230805185326_initialMigration")]
-    partial class initialMigration
+    [Migration("20230810114314_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,7 +44,7 @@ namespace Mohashan.UserManager.Persistence.Migrations
                     b.Property<string>("DeletedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DeletedDateTime")
+                    b.Property<DateTime?>("DeletedDateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -56,7 +56,7 @@ namespace Mohashan.UserManager.Persistence.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("LastModifiedDateTime")
+                    b.Property<DateTime?>("LastModifiedDateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
@@ -71,24 +71,20 @@ namespace Mohashan.UserManager.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d72c5f77-667d-4a73-a426-1f76e18a93b5"),
+                            Id = new Guid("392b2705-8e02-49c2-b157-27c332640f38"),
                             CreatedBy = "Seeder",
-                            CreatedDateTime = new DateTime(2023, 8, 5, 22, 23, 26, 73, DateTimeKind.Local).AddTicks(7453),
+                            CreatedDateTime = new DateTime(2023, 8, 10, 15, 13, 14, 742, DateTimeKind.Local).AddTicks(5841),
                             DataType = "String",
-                            DeletedDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
-                            LastModifiedDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "MobileNumber"
                         },
                         new
                         {
-                            Id = new Guid("b8d7034b-176f-46ca-8a77-ddbf8d5518cc"),
+                            Id = new Guid("cdcf60cd-fe72-4ce9-84f9-c594a453ba72"),
                             CreatedBy = "Seeder",
-                            CreatedDateTime = new DateTime(2023, 8, 5, 22, 23, 26, 73, DateTimeKind.Local).AddTicks(7484),
+                            CreatedDateTime = new DateTime(2023, 8, 10, 15, 13, 14, 742, DateTimeKind.Local).AddTicks(5868),
                             DataType = "String",
-                            DeletedDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
-                            LastModifiedDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Email"
                         });
                 });
@@ -108,7 +104,7 @@ namespace Mohashan.UserManager.Persistence.Migrations
                     b.Property<string>("DeletedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DeletedDateTime")
+                    b.Property<DateTime?>("DeletedDateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsDeleted")
@@ -117,7 +113,7 @@ namespace Mohashan.UserManager.Persistence.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("LastModifiedDateTime")
+                    b.Property<DateTime?>("LastModifiedDateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
@@ -132,22 +128,18 @@ namespace Mohashan.UserManager.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("0446761a-0d10-4a85-afb6-c0c0a1ed4fbd"),
+                            Id = new Guid("b71e10cf-4d7e-4347-88ca-ffbb851eb2b5"),
                             CreatedBy = "Seeder",
-                            CreatedDateTime = new DateTime(2023, 8, 5, 22, 23, 26, 73, DateTimeKind.Local).AddTicks(7561),
-                            DeletedDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDateTime = new DateTime(2023, 8, 10, 15, 13, 14, 742, DateTimeKind.Local).AddTicks(5947),
                             IsDeleted = false,
-                            LastModifiedDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "AdminGroup"
                         },
                         new
                         {
-                            Id = new Guid("6f74e22b-04a3-4eda-b7b0-b9e1fe8b963d"),
+                            Id = new Guid("f864de16-dd49-4e19-b710-d568c865d747"),
                             CreatedBy = "Seeder",
-                            CreatedDateTime = new DateTime(2023, 8, 5, 22, 23, 26, 73, DateTimeKind.Local).AddTicks(7568),
-                            DeletedDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDateTime = new DateTime(2023, 8, 10, 15, 13, 14, 742, DateTimeKind.Local).AddTicks(5955),
                             IsDeleted = false,
-                            LastModifiedDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "ReportGroup"
                         });
                 });
@@ -167,7 +159,7 @@ namespace Mohashan.UserManager.Persistence.Migrations
                     b.Property<string>("DeletedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DeletedDateTime")
+                    b.Property<DateTime?>("DeletedDateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsDeleted")
@@ -176,7 +168,7 @@ namespace Mohashan.UserManager.Persistence.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("LastModifiedDateTime")
+                    b.Property<DateTime?>("LastModifiedDateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
@@ -196,14 +188,12 @@ namespace Mohashan.UserManager.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("34d442ac-d567-4603-9ff8-f78727330629"),
+                            Id = new Guid("7f4b464d-cf9b-4174-b1c1-5305ae88785a"),
                             CreatedBy = "Seeder",
-                            CreatedDateTime = new DateTime(2023, 8, 5, 22, 23, 26, 73, DateTimeKind.Local).AddTicks(7549),
-                            DeletedDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDateTime = new DateTime(2023, 8, 10, 15, 13, 14, 742, DateTimeKind.Local).AddTicks(5936),
                             IsDeleted = false,
-                            LastModifiedDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Admin",
-                            UserTypeId = new Guid("743478cc-0688-4fb0-abae-e920cd7a52bd")
+                            UserTypeId = new Guid("6ef3262e-8d52-4a76-bada-27f84f227a7e")
                         });
                 });
 
@@ -222,7 +212,7 @@ namespace Mohashan.UserManager.Persistence.Migrations
                     b.Property<string>("DeletedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DeletedDateTime")
+                    b.Property<DateTime?>("DeletedDateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid>("FeatureId")
@@ -234,7 +224,7 @@ namespace Mohashan.UserManager.Persistence.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("LastModifiedDateTime")
+                    b.Property<DateTime?>("LastModifiedDateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid>("UserId")
@@ -256,26 +246,22 @@ namespace Mohashan.UserManager.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("3cb6e6de-914f-4fae-83c1-e6dc65c23eb3"),
+                            Id = new Guid("f6318606-bf39-4a75-8559-d668928ba211"),
                             CreatedBy = "Seeder",
-                            CreatedDateTime = new DateTime(2023, 8, 5, 22, 23, 26, 73, DateTimeKind.Local).AddTicks(7589),
-                            DeletedDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FeatureId = new Guid("d72c5f77-667d-4a73-a426-1f76e18a93b5"),
+                            CreatedDateTime = new DateTime(2023, 8, 10, 15, 13, 14, 742, DateTimeKind.Local).AddTicks(5980),
+                            FeatureId = new Guid("392b2705-8e02-49c2-b157-27c332640f38"),
                             IsDeleted = false,
-                            LastModifiedDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = new Guid("34d442ac-d567-4603-9ff8-f78727330629"),
+                            UserId = new Guid("7f4b464d-cf9b-4174-b1c1-5305ae88785a"),
                             Value = "09011500119"
                         },
                         new
                         {
-                            Id = new Guid("2969947c-a78d-44eb-9c11-0091d5711ef5"),
+                            Id = new Guid("63d9efad-9713-4690-8bbc-eb54e3821b0e"),
                             CreatedBy = "Seeder",
-                            CreatedDateTime = new DateTime(2023, 8, 5, 22, 23, 26, 73, DateTimeKind.Local).AddTicks(7597),
-                            DeletedDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FeatureId = new Guid("b8d7034b-176f-46ca-8a77-ddbf8d5518cc"),
+                            CreatedDateTime = new DateTime(2023, 8, 10, 15, 13, 14, 742, DateTimeKind.Local).AddTicks(5987),
+                            FeatureId = new Guid("cdcf60cd-fe72-4ce9-84f9-c594a453ba72"),
                             IsDeleted = false,
-                            LastModifiedDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = new Guid("34d442ac-d567-4603-9ff8-f78727330629"),
+                            UserId = new Guid("7f4b464d-cf9b-4174-b1c1-5305ae88785a"),
                             Value = "msh200x@gmail.com"
                         });
                 });
@@ -295,7 +281,7 @@ namespace Mohashan.UserManager.Persistence.Migrations
                     b.Property<string>("DeletedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DeletedDateTime")
+                    b.Property<DateTime?>("DeletedDateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid>("GroupId")
@@ -307,7 +293,7 @@ namespace Mohashan.UserManager.Persistence.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("LastModifiedDateTime")
+                    b.Property<DateTime?>("LastModifiedDateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid>("UserId")
@@ -324,25 +310,21 @@ namespace Mohashan.UserManager.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("74efd38f-70c1-4261-aed8-3932800c0df3"),
+                            Id = new Guid("91442ebf-36a4-451e-81f3-003cc7c673ed"),
                             CreatedBy = "Seeder",
-                            CreatedDateTime = new DateTime(2023, 8, 5, 22, 23, 26, 73, DateTimeKind.Local).AddTicks(7575),
-                            DeletedDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            GroupId = new Guid("0446761a-0d10-4a85-afb6-c0c0a1ed4fbd"),
+                            CreatedDateTime = new DateTime(2023, 8, 10, 15, 13, 14, 742, DateTimeKind.Local).AddTicks(5963),
+                            GroupId = new Guid("b71e10cf-4d7e-4347-88ca-ffbb851eb2b5"),
                             IsDeleted = false,
-                            LastModifiedDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = new Guid("34d442ac-d567-4603-9ff8-f78727330629")
+                            UserId = new Guid("7f4b464d-cf9b-4174-b1c1-5305ae88785a")
                         },
                         new
                         {
-                            Id = new Guid("6121ab3e-fc99-4cc2-8874-221fea3e77f3"),
+                            Id = new Guid("354960c6-c1ba-4aa9-a1d9-1fe3a193f69a"),
                             CreatedBy = "Seeder",
-                            CreatedDateTime = new DateTime(2023, 8, 5, 22, 23, 26, 73, DateTimeKind.Local).AddTicks(7582),
-                            DeletedDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            GroupId = new Guid("6f74e22b-04a3-4eda-b7b0-b9e1fe8b963d"),
+                            CreatedDateTime = new DateTime(2023, 8, 10, 15, 13, 14, 742, DateTimeKind.Local).AddTicks(5972),
+                            GroupId = new Guid("f864de16-dd49-4e19-b710-d568c865d747"),
                             IsDeleted = false,
-                            LastModifiedDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = new Guid("34d442ac-d567-4603-9ff8-f78727330629")
+                            UserId = new Guid("7f4b464d-cf9b-4174-b1c1-5305ae88785a")
                         });
                 });
 
@@ -361,7 +343,7 @@ namespace Mohashan.UserManager.Persistence.Migrations
                     b.Property<string>("DeletedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DeletedDateTime")
+                    b.Property<DateTime?>("DeletedDateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsDeleted")
@@ -370,7 +352,7 @@ namespace Mohashan.UserManager.Persistence.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("LastModifiedDateTime")
+                    b.Property<DateTime?>("LastModifiedDateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
@@ -385,22 +367,18 @@ namespace Mohashan.UserManager.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("743478cc-0688-4fb0-abae-e920cd7a52bd"),
+                            Id = new Guid("6ef3262e-8d52-4a76-bada-27f84f227a7e"),
                             CreatedBy = "Seeder",
-                            CreatedDateTime = new DateTime(2023, 8, 5, 22, 23, 26, 73, DateTimeKind.Local).AddTicks(7494),
-                            DeletedDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDateTime = new DateTime(2023, 8, 10, 15, 13, 14, 742, DateTimeKind.Local).AddTicks(5877),
                             IsDeleted = false,
-                            LastModifiedDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Human"
                         },
                         new
                         {
-                            Id = new Guid("6ab3ffdf-8381-45b7-aa87-08829ba2e38e"),
+                            Id = new Guid("d7e652db-56cd-40fe-b370-757a74ca77b5"),
                             CreatedBy = "Seeder",
-                            CreatedDateTime = new DateTime(2023, 8, 5, 22, 23, 26, 73, DateTimeKind.Local).AddTicks(7538),
-                            DeletedDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDateTime = new DateTime(2023, 8, 10, 15, 13, 14, 742, DateTimeKind.Local).AddTicks(5925),
                             IsDeleted = false,
-                            LastModifiedDateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "System"
                         });
                 });

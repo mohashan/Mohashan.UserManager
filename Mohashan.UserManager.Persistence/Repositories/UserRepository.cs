@@ -31,6 +31,11 @@ public class UserRepository : BaseRepository<User>, IUserRepository
             .ToListAsync();
     }
 
+    public async Task<IReadOnlyList<User>> GetUserListWithTypeAsync()
+    {
+        return await _dbContext.Users.Include(c=>c.UserType).ToListAsync();
+    }
+
     public async Task<bool> UsernameIsUnique(string userName)
     {
         return !(await _dbContext.Users.AnyAsync(c=>c.Name.Equals(userName,StringComparison.OrdinalIgnoreCase)));

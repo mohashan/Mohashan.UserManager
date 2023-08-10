@@ -15,4 +15,8 @@
     <ProjectReference Include="..\Mohashan.UserManager.Application\Mohashan.UserManager.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

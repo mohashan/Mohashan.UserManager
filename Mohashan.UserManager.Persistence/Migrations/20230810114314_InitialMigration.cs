@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Mohashan.UserManager.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class initialMigration : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -24,10 +24,10 @@ namespace Mohashan.UserManager.Persistence.Migrations
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastModifiedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DeletedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    DeletedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -43,10 +43,10 @@ namespace Mohashan.UserManager.Persistence.Migrations
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastModifiedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DeletedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    DeletedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -62,10 +62,10 @@ namespace Mohashan.UserManager.Persistence.Migrations
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastModifiedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DeletedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    DeletedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -82,10 +82,10 @@ namespace Mohashan.UserManager.Persistence.Migrations
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastModifiedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DeletedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    DeletedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -109,10 +109,10 @@ namespace Mohashan.UserManager.Persistence.Migrations
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastModifiedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DeletedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    DeletedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -141,10 +141,10 @@ namespace Mohashan.UserManager.Persistence.Migrations
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastModifiedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DeletedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    DeletedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -168,8 +168,8 @@ namespace Mohashan.UserManager.Persistence.Migrations
                 columns: new[] { "Id", "CreatedBy", "CreatedDateTime", "DataType", "DeletedBy", "DeletedDateTime", "Description", "IsDeleted", "LastModifiedBy", "LastModifiedDateTime", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("b8d7034b-176f-46ca-8a77-ddbf8d5518cc"), "Seeder", new DateTime(2023, 8, 5, 22, 23, 26, 73, DateTimeKind.Local).AddTicks(7484), "String", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Email" },
-                    { new Guid("d72c5f77-667d-4a73-a426-1f76e18a93b5"), "Seeder", new DateTime(2023, 8, 5, 22, 23, 26, 73, DateTimeKind.Local).AddTicks(7453), "String", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "MobileNumber" }
+                    { new Guid("392b2705-8e02-49c2-b157-27c332640f38"), "Seeder", new DateTime(2023, 8, 10, 15, 13, 14, 742, DateTimeKind.Local).AddTicks(5841), "String", null, null, null, false, null, null, "MobileNumber" },
+                    { new Guid("cdcf60cd-fe72-4ce9-84f9-c594a453ba72"), "Seeder", new DateTime(2023, 8, 10, 15, 13, 14, 742, DateTimeKind.Local).AddTicks(5868), "String", null, null, null, false, null, null, "Email" }
                 });
 
             migrationBuilder.InsertData(
@@ -177,8 +177,8 @@ namespace Mohashan.UserManager.Persistence.Migrations
                 columns: new[] { "Id", "CreatedBy", "CreatedDateTime", "DeletedBy", "DeletedDateTime", "IsDeleted", "LastModifiedBy", "LastModifiedDateTime", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("0446761a-0d10-4a85-afb6-c0c0a1ed4fbd"), "Seeder", new DateTime(2023, 8, 5, 22, 23, 26, 73, DateTimeKind.Local).AddTicks(7561), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "AdminGroup" },
-                    { new Guid("6f74e22b-04a3-4eda-b7b0-b9e1fe8b963d"), "Seeder", new DateTime(2023, 8, 5, 22, 23, 26, 73, DateTimeKind.Local).AddTicks(7568), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "ReportGroup" }
+                    { new Guid("b71e10cf-4d7e-4347-88ca-ffbb851eb2b5"), "Seeder", new DateTime(2023, 8, 10, 15, 13, 14, 742, DateTimeKind.Local).AddTicks(5947), null, null, false, null, null, "AdminGroup" },
+                    { new Guid("f864de16-dd49-4e19-b710-d568c865d747"), "Seeder", new DateTime(2023, 8, 10, 15, 13, 14, 742, DateTimeKind.Local).AddTicks(5955), null, null, false, null, null, "ReportGroup" }
                 });
 
             migrationBuilder.InsertData(
@@ -186,22 +186,22 @@ namespace Mohashan.UserManager.Persistence.Migrations
                 columns: new[] { "Id", "CreatedBy", "CreatedDateTime", "DeletedBy", "DeletedDateTime", "IsDeleted", "LastModifiedBy", "LastModifiedDateTime", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("6ab3ffdf-8381-45b7-aa87-08829ba2e38e"), "Seeder", new DateTime(2023, 8, 5, 22, 23, 26, 73, DateTimeKind.Local).AddTicks(7538), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "System" },
-                    { new Guid("743478cc-0688-4fb0-abae-e920cd7a52bd"), "Seeder", new DateTime(2023, 8, 5, 22, 23, 26, 73, DateTimeKind.Local).AddTicks(7494), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Human" }
+                    { new Guid("6ef3262e-8d52-4a76-bada-27f84f227a7e"), "Seeder", new DateTime(2023, 8, 10, 15, 13, 14, 742, DateTimeKind.Local).AddTicks(5877), null, null, false, null, null, "Human" },
+                    { new Guid("d7e652db-56cd-40fe-b370-757a74ca77b5"), "Seeder", new DateTime(2023, 8, 10, 15, 13, 14, 742, DateTimeKind.Local).AddTicks(5925), null, null, false, null, null, "System" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "CreatedBy", "CreatedDateTime", "DeletedBy", "DeletedDateTime", "IsDeleted", "LastModifiedBy", "LastModifiedDateTime", "Name", "UserTypeId" },
-                values: new object[] { new Guid("34d442ac-d567-4603-9ff8-f78727330629"), "Seeder", new DateTime(2023, 8, 5, 22, 23, 26, 73, DateTimeKind.Local).AddTicks(7549), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Admin", new Guid("743478cc-0688-4fb0-abae-e920cd7a52bd") });
+                values: new object[] { new Guid("7f4b464d-cf9b-4174-b1c1-5305ae88785a"), "Seeder", new DateTime(2023, 8, 10, 15, 13, 14, 742, DateTimeKind.Local).AddTicks(5936), null, null, false, null, null, "Admin", new Guid("6ef3262e-8d52-4a76-bada-27f84f227a7e") });
 
             migrationBuilder.InsertData(
                 table: "userFeatures",
                 columns: new[] { "Id", "CreatedBy", "CreatedDateTime", "DeletedBy", "DeletedDateTime", "FeatureId", "IsDeleted", "LastModifiedBy", "LastModifiedDateTime", "UserId", "Value" },
                 values: new object[,]
                 {
-                    { new Guid("2969947c-a78d-44eb-9c11-0091d5711ef5"), "Seeder", new DateTime(2023, 8, 5, 22, 23, 26, 73, DateTimeKind.Local).AddTicks(7597), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("b8d7034b-176f-46ca-8a77-ddbf8d5518cc"), false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("34d442ac-d567-4603-9ff8-f78727330629"), "msh200x@gmail.com" },
-                    { new Guid("3cb6e6de-914f-4fae-83c1-e6dc65c23eb3"), "Seeder", new DateTime(2023, 8, 5, 22, 23, 26, 73, DateTimeKind.Local).AddTicks(7589), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("d72c5f77-667d-4a73-a426-1f76e18a93b5"), false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("34d442ac-d567-4603-9ff8-f78727330629"), "09011500119" }
+                    { new Guid("63d9efad-9713-4690-8bbc-eb54e3821b0e"), "Seeder", new DateTime(2023, 8, 10, 15, 13, 14, 742, DateTimeKind.Local).AddTicks(5987), null, null, new Guid("cdcf60cd-fe72-4ce9-84f9-c594a453ba72"), false, null, null, new Guid("7f4b464d-cf9b-4174-b1c1-5305ae88785a"), "msh200x@gmail.com" },
+                    { new Guid("f6318606-bf39-4a75-8559-d668928ba211"), "Seeder", new DateTime(2023, 8, 10, 15, 13, 14, 742, DateTimeKind.Local).AddTicks(5980), null, null, new Guid("392b2705-8e02-49c2-b157-27c332640f38"), false, null, null, new Guid("7f4b464d-cf9b-4174-b1c1-5305ae88785a"), "09011500119" }
                 });
 
             migrationBuilder.InsertData(
@@ -209,8 +209,8 @@ namespace Mohashan.UserManager.Persistence.Migrations
                 columns: new[] { "Id", "CreatedBy", "CreatedDateTime", "DeletedBy", "DeletedDateTime", "GroupId", "IsDeleted", "LastModifiedBy", "LastModifiedDateTime", "UserId" },
                 values: new object[,]
                 {
-                    { new Guid("6121ab3e-fc99-4cc2-8874-221fea3e77f3"), "Seeder", new DateTime(2023, 8, 5, 22, 23, 26, 73, DateTimeKind.Local).AddTicks(7582), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("6f74e22b-04a3-4eda-b7b0-b9e1fe8b963d"), false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("34d442ac-d567-4603-9ff8-f78727330629") },
-                    { new Guid("74efd38f-70c1-4261-aed8-3932800c0df3"), "Seeder", new DateTime(2023, 8, 5, 22, 23, 26, 73, DateTimeKind.Local).AddTicks(7575), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("0446761a-0d10-4a85-afb6-c0c0a1ed4fbd"), false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("34d442ac-d567-4603-9ff8-f78727330629") }
+                    { new Guid("354960c6-c1ba-4aa9-a1d9-1fe3a193f69a"), "Seeder", new DateTime(2023, 8, 10, 15, 13, 14, 742, DateTimeKind.Local).AddTicks(5972), null, null, new Guid("f864de16-dd49-4e19-b710-d568c865d747"), false, null, null, new Guid("7f4b464d-cf9b-4174-b1c1-5305ae88785a") },
+                    { new Guid("91442ebf-36a4-451e-81f3-003cc7c673ed"), "Seeder", new DateTime(2023, 8, 10, 15, 13, 14, 742, DateTimeKind.Local).AddTicks(5963), null, null, new Guid("b71e10cf-4d7e-4347-88ca-ffbb851eb2b5"), false, null, null, new Guid("7f4b464d-cf9b-4174-b1c1-5305ae88785a") }
                 });
 
             migrationBuilder.CreateIndex(
