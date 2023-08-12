@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Mohashan.UserManager.API.Utility;
 using Mohashan.UserManager.Application.Features.Users.Commands.CreateUser;
 using Mohashan.UserManager.Application.Features.Users.Commands.DeleteUser;
 using Mohashan.UserManager.Application.Features.Users.Commands.UpdateUser;
@@ -70,6 +71,7 @@ namespace Mohashan.UserManager.API.Controllers
         }
 
         [HttpGet("export",Name = "ExportUsers")]
+        [FileResultContentType("text/csv")]
         public async Task<FileResult> ExportUsers()
         {
             var fileDto = await _mediator.Send(new GetUsersExportQuery());

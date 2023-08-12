@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Mohashan.UserManager.API.Utility;
 using Mohashan.UserManager.Application;
 using Mohashan.UserManager.Infrastructure;
 using Mohashan.UserManager.Persistence;
@@ -8,6 +9,7 @@ public static class StartupExtensions
 {
     public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
     {
+        AddSwagger(builder.Services);
         builder.Services.AddApplicationServices();
         builder.Services.AddInfrastructureServices(builder.Configuration);
         builder.Services.AddPersistenceServices(builder.Configuration);
@@ -22,9 +24,31 @@ public static class StartupExtensions
         return builder.Build();
     }
 
+    public static void AddSwagger(IServiceCollection services)
+    {
+        services.AddSwaggerGen(c =>
+        {
+            c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+            {
+                Version = "v1",
+                Title = "Mohashan Usermanagement API"
+            });
+            c.OperationFilter<FileResultContentTypeOperationFilter>();
+        });
+    }
+
     public static WebApplication ConfigurePipeline(this WebApplication app)
     {
-        //app.UseHttpsRedirection();
+        if(app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Mohashan Usermanagement API");
+            });
+        }
+        app.UseHttpsRedirection();
+
         app.UseRouting();
 
         app.UseCors("Open");
