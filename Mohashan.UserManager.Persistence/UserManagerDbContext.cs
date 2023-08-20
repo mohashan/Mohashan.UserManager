@@ -22,22 +22,22 @@ public class UserManagerDbContext:DbContext
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserManagerDbContext).Assembly);
         var seedCreator = "Seeder";
 
-        var user1Guid = Guid.NewGuid();
+        var user1Guid = Guid.Parse("{5c56c180-6147-4edf-a969-04b83bd49cfa}");
 
-        var feature1Guid = Guid.NewGuid();
-        var feature2Guid = Guid.NewGuid();
+        var feature1Guid = Guid.Parse("{a9bbae60-9326-4059-ada5-ab38bb44436d}");
+        var feature2Guid = Guid.Parse("{ae9c1443-7139-449a-8ba4-d08ddc5d92ec}");
 
-        var group1Guid = Guid.NewGuid();
-        var group2Guid = Guid.NewGuid();
+        var group1Guid = Guid.Parse("{be8331cf-6893-4233-8efb-c485a179bb53}");
+        var group2Guid = Guid.Parse("{2aa6ff03-b8d7-44cf-8937-21dd0ea0d706}");
 
-        var userFeature1Guid = Guid.NewGuid();
-        var userFeature2Guid = Guid.NewGuid();
+        var userFeature1Guid = Guid.Parse("{a6251894-fd70-4cd4-b2bd-771f6f6df345}");
+        var userFeature2Guid = Guid.Parse("{36681998-1486-4d22-9374-2eb84e401c79}");
 
-        var userGroup1Guid = Guid.NewGuid();
-        var userGroup2Guid = Guid.NewGuid();
+        var userGroup1Guid = Guid.Parse("{e254a8e7-06a1-4c14-918d-5e65ab9109f9}");
+        var userGroup2Guid = Guid.Parse("{e182d7f4-a5b3-4525-826b-eb7b9e72dbb7}");
 
-        var userType1Guid = Guid.NewGuid();
-        var userType2Guid = Guid.NewGuid();
+        var userType1Guid = Guid.Parse("{334c067b-e114-4e18-891f-2b7c8e21c25f}");
+        var userType2Guid = Guid.Parse("{84639c75-d591-4cac-a864-e706c08800f1}");
 
         modelBuilder.Entity<Feature>().HasData(new Feature
         {

@@ -16,7 +16,7 @@ public class GetGroupListQueryHandler : IRequestHandler<GetGroupListQuery, List<
     }
     public async Task<List<GroupListVm>> Handle(GetGroupListQuery request, CancellationToken cancellationToken)
     {
-        var groups = (await _groupRepository.GetAllPagedAsync()).OrderBy(x => x.Name).ToList();
+        var groups = (await _groupRepository.GetAllPagedAsync(request.PageCount,request.PageNumber)).OrderBy(x => x.Name).ToList();
         return _mapper.Map<List<GroupListVm>>(groups);
     }
 }

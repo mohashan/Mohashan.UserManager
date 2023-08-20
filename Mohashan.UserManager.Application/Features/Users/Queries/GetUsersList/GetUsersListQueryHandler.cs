@@ -18,7 +18,7 @@ public class GetUsersListQueryHandler : IRequestHandler<GetUsersListQuery, List<
     }
     public async Task<List<UsersListVm>> Handle(GetUsersListQuery request, CancellationToken cancellationToken)
     {
-        var users = (await _userRepository.GetAllPagedAsync()).OrderBy(c => c.Name);
+        var users = (await _userRepository.GetAllPagedAsync(request.PageCount,request.PageNumber)).OrderBy(c => c.Name);
         return _mapper.Map<List<UsersListVm>>(users);
     }
 }

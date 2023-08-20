@@ -56,8 +56,7 @@ public class MappingProfile:Profile
         CreateMap<User,CreateUserCommand>().ReverseMap();
         CreateMap<User,UpdateUserCommand>().ReverseMap();
         CreateMap<User,DeleteUserCommand>().ReverseMap();
-        CreateMap<User, CreateUserCommandResponse>().ReverseMap();
-
         CreateMap<User, UserExportDto>().ReverseMap();
+        CreateMap<User, CreateUserCommandResponse>().ReverseMap();
     }
 }

@@ -16,7 +16,7 @@ public class GetFeaturesListQueryHandler : IRequestHandler<GetFeaturesListQuery,
     }
     public async Task<List<FeaturesListVm>> Handle(GetFeaturesListQuery request, CancellationToken cancellationToken)
     {
-        var allFeatures = (await _featureRepository.GetAllPagedAsync()).OrderBy(c=>c.Name);
+        var allFeatures = (await _featureRepository.GetAllPagedAsync(request.PageCount,request.PageNumber)).OrderBy(c=>c.Name);
 
         return _mapper.Map<List<FeaturesListVm>>(allFeatures);
     }

@@ -37,9 +37,9 @@ public class BaseRepository<T> : IAsyncRepository<T> where T : BaseEntity
         await _dbContext.SaveChangesAsync();
     }
 
-    public async Task<IReadOnlyList<T>> GetAllPagedAsync(int count = 10,int pageNum = 1)
+    public virtual async Task<IReadOnlyList<T>> GetAllPagedAsync(int count = 10,int pageNum = 1)
     {
-        return await _dbContext.Set<T>().Skip((pageNum - 1) * count).Take(count).ToListAsync();
+        return await _dbContext.Set<T>().OrderBy(c=>c.CreatedDateTime).Skip((pageNum - 1) * count).Take(count).ToListAsync();
     }
 
     public async Task<IReadOnlyList<T>> GetListAsync()

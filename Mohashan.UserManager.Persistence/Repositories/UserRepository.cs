@@ -40,4 +40,10 @@ public class UserRepository : BaseRepository<User>, IUserRepository
     {
         return !(await _dbContext.Users.AnyAsync(c=>c.Name.Equals(userName,StringComparison.OrdinalIgnoreCase)));
     }
+
+    public override async Task<IReadOnlyList<User>> GetAllPagedAsync(int count = 10, int pageNum = 1)
+    {
+        return await _dbContext.Set<User>().OrderBy(c => c.Name).Skip((pageNum - 1) * count).Take(count).ToListAsync();
+
+    }
 }
