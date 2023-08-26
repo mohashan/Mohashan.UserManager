@@ -21,13 +21,12 @@ public class UserRepository : BaseRepository<User>, IUserRepository
             .ToListAsync();
     }
 
-    public async Task<ICollection<Feature>> GetUserFeatures(Guid userId, int count = 10, int pageNum = 1)
+    public async Task<ICollection<UserFeature>> GetUserFeatures(Guid userId, int count = 10, int pageNum = 1)
     {
         return await _dbContext.userFeatures
             .Where(c => c.UserId == userId)
             .Skip((pageNum - 1) * count)
             .Take(count)
-            .Select(c => c.Feature)
             .ToListAsync();
     }
 

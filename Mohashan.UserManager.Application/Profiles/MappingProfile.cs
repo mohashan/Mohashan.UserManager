@@ -33,9 +33,6 @@ public class MappingProfile:Profile
         CreateMap<User, GroupUsersListVm>().ReverseMap();
         CreateMap<UserType,UserTypeDto>();
 
-        CreateMap<User, UserFeaturesListVm>()
-            .ForMember(c => c.UserId, opt => opt.MapFrom(c => c.Id))
-            .ForMember(c => c.UserName, opt => opt.MapFrom(c => c.Name));
 
         CreateMap<UserFeature, UserFeaturesDto>()
             .ForMember(c => c.FeatureName, opt => opt.MapFrom(c => c.Feature.Name))

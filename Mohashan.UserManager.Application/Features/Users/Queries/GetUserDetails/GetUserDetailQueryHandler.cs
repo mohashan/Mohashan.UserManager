@@ -23,6 +23,9 @@ public class GetUserDetailQueryHandler : IRequestHandler<GetUserDetailQuery, Use
     {
         var user = await _userRepository.GetByIdAsync(request.Id);
 
+        if(user is null) 
+            throw new ArgumentException("User is not exist");
+
         var userDetail = _mapper.Map<UserDetailVm>(user);
 
         var userType = await _userTypeRepository.GetByIdAsync(user.UserTypeId);

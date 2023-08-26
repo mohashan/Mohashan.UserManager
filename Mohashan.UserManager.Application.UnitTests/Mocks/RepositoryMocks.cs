@@ -1,11 +1,12 @@
 ﻿using Mohashan.UserManager.Application.Contracts.Persistence;
+using Mohashan.UserManager.Application.Features.Users.Queries.GetUserDetails;
 using Mohashan.UserManager.Domain.Entities;
 using Moq;
+using Shouldly;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Mohashan.UserManager.Application.UnitTests.Mocks;
@@ -32,9 +33,59 @@ public class RepositoryMocks
             return user;
         });
 
+        mockUserRepository.Setup(repo => repo.GetByIdAsync(It.IsAny<Guid>())).ReturnsAsync((Guid id) =>
+        {
+            return allUsers.FirstOrDefault(c=>c.Id==id);
+        });
+        mockUserRepository.Setup(repo => repo.GetUserFeatures(It.IsAny<Guid>(),It.IsAny<int>(),It.IsAny<int>())).ReturnsAsync((Guid userId,int count,int page) =>
+        {
+            return allUsers.FirstOrDefault(c => c.Id == userId).UserFeatures.Skip((page - 1) * count).Take(count).ToList();
+        });
+
+        mockUserRepository.Setup(repo => repo.GetGroupUsers(It.IsAny<Guid>(), It.IsAny<int>(), It.IsAny<int>())).ReturnsAsync((Guid groupId, int count, int page) =>
+        {
+            return allUsers.Where(c => c != null && c.UserGroup != null && c.UserGroup.Any(d => d?.GroupId == groupId)).ToList();
+        });
+
         return mockUserRepository;
     }
+    public static Mock<IUserTypeRepository> GetUserTypeRepository()
+    {
+        var allUserTypes = userTypes();
 
+        Mock<IUserTypeRepository> mockUserTypeRepository = new Mock<IUserTypeRepository>();
+
+        mockUserTypeRepository.Setup(repo => repo.GetByIdAsync(It.IsAny<Guid>())).ReturnsAsync((Guid id) =>
+        {
+            return allUserTypes.FirstOrDefault(u => u.Id == id);
+        });
+
+        mockUserTypeRepository.Setup(repo => repo.GetListAsync()).ReturnsAsync(() =>
+        {
+            return allUserTypes;
+        });
+
+        return mockUserTypeRepository;
+    }
+    private static List<UserType> userTypes()
+    {
+        var userType1Guid = Guid.Parse("{334c067b-e114-4e18-891f-2b7c8e21c25f}");
+        var userType2Guid = Guid.Parse("{84639c75-d591-4cac-a864-e706c08800f1}");
+
+        return new List<UserType>
+        {
+            new UserType
+            {
+                Id = userType1Guid,
+                Name = "User Type 1"
+            },
+            new UserType
+            {
+                Id = userType2Guid,
+                Name = "User Type 2"
+            },
+        };
+    }
     private static List<User> users()
     {
         var user1Guid = Guid.Parse("{5c56c180-6147-4edf-a969-04b83bd49cfa}");
@@ -89,6 +140,8 @@ public class RepositoryMocks
                     new UserGroup
                     {
                         Id= userGroup1Guid,
+                        GroupId = group1Guid,
+                        UserId = user1Guid,
                         Group = new Group
                         {
                             Id = group1Guid,
