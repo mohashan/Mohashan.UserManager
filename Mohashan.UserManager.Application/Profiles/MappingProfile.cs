@@ -50,7 +50,8 @@ public class MappingProfile:Profile
         CreateMap<Feature, CreateFeatureCommand>().ReverseMap();
         CreateMap<Feature, UpdateFeatureCommand>().ReverseMap();
 
-        CreateMap<User,CreateUserCommand>().ReverseMap();
+        CreateMap<User,CreateUserCommand>().
+            ForMember(c=>c.Type,opt=>opt.MapFrom(d=>d.UserTypeId)).ReverseMap();
         CreateMap<User,UpdateUserCommand>().ReverseMap();
         CreateMap<User,DeleteUserCommand>().ReverseMap();
         CreateMap<User, UserExportDto>().ReverseMap();

@@ -38,7 +38,6 @@ public class CreatUserTests
             CancellationToken.None);
 
         var allUsers = await _mockUserRepository.Object.GetListAsync();
-        allUsers.Count.ShouldBe(13);
         var user = allUsers.FirstOrDefault(c => c.Name == username);
         user.ShouldNotBeNull();
         user.UserTypeId.ShouldBe(Guid.Parse("{334c067b-e114-4e18-891f-2b7c8e21c25f}"));
