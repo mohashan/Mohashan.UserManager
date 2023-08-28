@@ -30,7 +30,7 @@ public class GetUsersExportQueryHandlerTests
     }
 
     [Fact]
-    public async Task GetUsersListTest()
+    public async Task Get_UsersList_Test()
     {
         var handler = new GetUsersExportQueryHandler(_mapper, _mockUserRepository.Object,csvExporter.Object);
 
@@ -40,9 +40,6 @@ public class GetUsersExportQueryHandlerTests
         result.ContentType.ShouldBe("text/csv");
         result.Data.ShouldBeOfType<byte[]>();
         result.UserExportFileName.ShouldContain(".csv");
-        result.UserExportFileName.ShouldNotBeNull();
-        result.UserExportFileName.ShouldNotBeEmpty();
+        result.UserExportFileName.Length.ShouldBeGreaterThan(4);
     }
-
-
 }

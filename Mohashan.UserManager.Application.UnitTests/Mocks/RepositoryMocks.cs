@@ -15,10 +15,10 @@ public class RepositoryMocks
 {
     public static Mock<IUserRepository> GetUserRepository()
     {
-        var allUsers = users();
+        var allUsers = users().Where(c=>!c.IsDeleted).ToList();
         var mockUserRepository = new Mock<IUserRepository>();
         mockUserRepository.Setup(repo => repo.GetListAsync()).ReturnsAsync(allUsers);
-        mockUserRepository.Setup(repo => repo.GetAllPagedAsync(It.IsAny<int>(), It.IsAny<int>())).ReturnsAsync((int count,int page) =>
+        mockUserRepository.Setup(repo => repo.GetAllPagedAsync(It.IsAny<int>(), It.IsAny<int>())).ReturnsAsync((int count, int page) =>
         {
             return allUsers.OrderBy(c => c.Name).Skip((page - 1) * count).Take(count).ToList();
         });
@@ -35,16 +35,38 @@ public class RepositoryMocks
 
         mockUserRepository.Setup(repo => repo.GetByIdAsync(It.IsAny<Guid>())).ReturnsAsync((Guid id) =>
         {
-            return allUsers.FirstOrDefault(c=>c.Id==id);
+            return allUsers.FirstOrDefault(c => c.Id == id);
         });
-        mockUserRepository.Setup(repo => repo.GetUserFeatures(It.IsAny<Guid>(),It.IsAny<int>(),It.IsAny<int>())).ReturnsAsync((Guid userId,int count,int page) =>
+        mockUserRepository.Setup(repo => repo.GetUserFeatures(It.IsAny<Guid>(), It.IsAny<int>(), It.IsAny<int>())).ReturnsAsync((Guid userId, int count, int page) =>
         {
-            return allUsers.FirstOrDefault(c => c.Id == userId).UserFeatures.Skip((page - 1) * count).Take(count).ToList();
+            return allUsers.FirstOrDefault(c => c.Id == userId)?.UserFeatures?.Skip((page - 1) * count).Take(count).ToList();
         });
 
         mockUserRepository.Setup(repo => repo.GetGroupUsers(It.IsAny<Guid>(), It.IsAny<int>(), It.IsAny<int>())).ReturnsAsync((Guid groupId, int count, int page) =>
         {
             return allUsers.Where(c => c != null && c.UserGroup != null && c.UserGroup.Any(d => d?.GroupId == groupId)).ToList();
+        });
+
+        mockUserRepository.Setup(repo => repo.DeleteAsync(It.IsAny<Guid>())).Returns((Guid Id) =>
+        {
+            var user = allUsers.FirstOrDefault(c => c.Id == Id);
+            if(user is null)
+                throw new ArgumentException();
+
+            user.IsDeleted = true;
+            user.DeletedDateTime = DateTime.UtcNow;
+            return Task.CompletedTask;
+        });
+
+        mockUserRepository.Setup(repo => repo.UpdateAsync(It.IsAny<User>())).Returns((User user) =>
+        {
+            var newUser = allUsers.FirstOrDefault(c => c.Id == user.Id);
+            if (newUser is null)
+                throw new ArgumentException();
+            newUser.Name = user.Name;
+            newUser.UserTypeId = user.UserTypeId;
+            user.LastModifiedDateTime = DateTime.UtcNow;
+            return Task.CompletedTask;
         });
 
         return mockUserRepository;
@@ -89,6 +111,7 @@ public class RepositoryMocks
     private static List<User> users()
     {
         var user1Guid = Guid.Parse("{5c56c180-6147-4edf-a969-04b83bd49cfa}");
+        var user2Guid = Guid.Parse("{304cfc9e-6d2d-4db4-a678-43b51aab26f0}");
 
         var feature1Guid = Guid.Parse("{a9bbae60-9326-4059-ada5-ab38bb44436d}");
         var feature2Guid = Guid.Parse("{ae9c1443-7139-449a-8ba4-d08ddc5d92ec}");
@@ -152,7 +175,7 @@ public class RepositoryMocks
             },
             new User
             {
-                Id = Guid.NewGuid(),
+                Id = user2Guid,
                 Name = "testUser1",
             },
             new User

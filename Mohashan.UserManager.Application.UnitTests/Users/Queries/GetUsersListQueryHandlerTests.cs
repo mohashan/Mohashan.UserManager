@@ -33,7 +33,7 @@ public class GetUsersListQueryHandlerTests
     }
 
     [Fact]
-    public async Task GetUsersListTest()
+    public async Task Get_UsersList_Test()
     {
         var handler = new GetUsersListQueryHandler(_mapper,_mockUserRepository.Object);
         usersListQuery.PageCount = 10;
@@ -46,7 +46,7 @@ public class GetUsersListQueryHandlerTests
     }
 
     [Fact]
-    public async Task GetJustOneFromUsersListTest()
+    public async Task Get_Just_One_From_UsersList_Test()
     {
         var handler = new GetUsersListQueryHandler(_mapper, _mockUserRepository.Object);
         usersListQuery.PageCount = 1;

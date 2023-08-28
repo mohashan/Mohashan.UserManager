@@ -33,7 +33,7 @@ public class BaseRepository<T> : IAsyncRepository<T> where T : BaseEntity
             throw new NotFoundException(nameof(T), id);
         }
 
-        _dbContext.Entry(entry).State = EntityState.Modified;
+        _dbContext.Entry(entry).State = EntityState.Deleted;
         await _dbContext.SaveChangesAsync();
     }
 
