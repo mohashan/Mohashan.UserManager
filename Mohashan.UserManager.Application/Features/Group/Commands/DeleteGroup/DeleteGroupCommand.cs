@@ -1,15 +1,8 @@
-﻿using AutoMapper;
-using MediatR;
-using Mohashan.UserManager.Application.Features.Feature.Commands.DeleteFeature;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
 
 namespace Mohashan.UserManager.Application.Features.Group.Commands.DeleteGroup;
 
-public class DeleteGroupCommand:IRequest
+public class DeleteGroupCommand : IRequest
 {
     public Guid Id { get; set; }
 }

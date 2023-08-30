@@ -1,11 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mohashan.UserManager.API.Utility;
 using Mohashan.UserManager.Application.Features.Users.Commands.CreateUser;
 using Mohashan.UserManager.Application.Features.Users.Commands.DeleteUser;
 using Mohashan.UserManager.Application.Features.Users.Commands.UpdateUser;
-using Mohashan.UserManager.Application.Features.Users.Queries.GetGroupUsers;
 using Mohashan.UserManager.Application.Features.Users.Queries.GetUserDetails;
 using Mohashan.UserManager.Application.Features.Users.Queries.GetUsersExport;
 using Mohashan.UserManager.Application.Features.Users.Queries.GetUsersList;
@@ -23,7 +21,7 @@ namespace Mohashan.UserManager.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("all",Name = "GetAllUsers")]
+        [HttpGet("all", Name = "GetAllUsers")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<List<UsersListVm>>> GetAllUsers()
         {
@@ -36,14 +34,13 @@ namespace Mohashan.UserManager.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<UserDetailVm>> GetUserDetails(Guid id)
         {
-            var dtos = await _mediator.Send(new GetUserDetailQuery {Id = id });
+            var dtos = await _mediator.Send(new GetUserDetailQuery { Id = id });
             return Ok(dtos);
         }
 
         [HttpPost(Name = "AddUser")]
         public async Task<ActionResult<CreateUserCommandResponse>> Create([FromBody] CreateUserCommand createUserCommand)
         {
-
             var response = await _mediator.Send(createUserCommand);
             return Ok(response);
         }
@@ -54,23 +51,21 @@ namespace Mohashan.UserManager.API.Controllers
         [ProducesDefaultResponseType]
         public async Task<ActionResult> Update([FromBody] UpdateUserCommand updateUserCommand)
         {
-
             await _mediator.Send(updateUserCommand);
             return NoContent();
         }
 
-        [HttpDelete("{id}",Name = "DeleteUser")]
+        [HttpDelete("{id}", Name = "DeleteUser")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
         public async Task<ActionResult> Delete(Guid id)
         {
-
-            await _mediator.Send(new DeleteUserCommand { Id = id});
+            await _mediator.Send(new DeleteUserCommand { Id = id });
             return NoContent();
         }
 
-        [HttpGet("export",Name = "ExportUsers")]
+        [HttpGet("export", Name = "ExportUsers")]
         [FileResultContentType("text/csv")]
         public async Task<FileResult> ExportUsers()
         {

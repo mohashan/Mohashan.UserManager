@@ -14,6 +14,7 @@ public class DeleteFeatureCommandValidator : AbstractValidator<DeleteFeatureComm
             .NotEmpty().WithMessage("{PropertyName} is required")
             .MustAsync(IsFeatureExist).WithMessage("{PropertyName} is not exist");
     }
+
     private async Task<bool> IsFeatureExist(Guid id, CancellationToken cancellationToken)
     {
         return await _featureRepository.GetByIdAsync(id) != null;

@@ -7,8 +7,5 @@ public class UserFeatureRepository : BaseRepository<UserFeature>, IUserFeatureRe
 {
     public UserFeatureRepository(UserManagerDbContext dbContext) : base(dbContext)
     {
-
     }
-
-
 }

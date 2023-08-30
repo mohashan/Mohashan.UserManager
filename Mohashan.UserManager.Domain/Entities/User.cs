@@ -10,7 +10,5 @@ namespace Mohashan.UserManager.Domain.Entities
         public virtual ICollection<UserFeature>? UserFeatures { get; set; }
 
         public virtual ICollection<UserGroup>? UserGroup { get; set; }
-
     }
-
 }

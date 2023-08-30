@@ -2,7 +2,6 @@
 using Mohashan.UserManager.Application.Contracts.Infrastructure;
 using Mohashan.UserManager.Application.Contracts.Persistence;
 using Mohashan.UserManager.Application.Features.Users.Queries.GetUsersExport;
-using Mohashan.UserManager.Application.Features.Users.Queries.GetUsersList;
 using Mohashan.UserManager.Application.Profiles;
 using Mohashan.UserManager.Application.UnitTests.Mocks;
 using Moq;
@@ -16,6 +15,7 @@ public class GetUsersExportQueryHandlerTests
     private readonly Mock<IUserRepository> _mockUserRepository;
     private readonly GetUsersExportQuery usersExportQuery;
     private readonly Mock<ICsvExporter> csvExporter;
+
     public GetUsersExportQueryHandlerTests()
     {
         _mockUserRepository = RepositoryMocks.GetUserRepository();
@@ -32,7 +32,7 @@ public class GetUsersExportQueryHandlerTests
     [Fact]
     public async Task Get_UsersList_Test()
     {
-        var handler = new GetUsersExportQueryHandler(_mapper, _mockUserRepository.Object,csvExporter.Object);
+        var handler = new GetUsersExportQueryHandler(_mapper, _mockUserRepository.Object, csvExporter.Object);
 
         var result = await handler.Handle(usersExportQuery, CancellationToken.None);
 

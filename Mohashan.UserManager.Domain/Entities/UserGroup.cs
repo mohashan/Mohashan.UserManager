@@ -8,7 +8,5 @@ namespace Mohashan.UserManager.Domain.Entities
         public User User { get; set; } = default!;
         public Guid GroupId { get; set; }
         public Group Group { get; set; } = default!;
-
     }
-
 }

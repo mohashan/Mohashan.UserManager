@@ -2,7 +2,6 @@
 using MediatR;
 using Mohashan.UserManager.Application.Contracts.Infrastructure;
 using Mohashan.UserManager.Application.Contracts.Persistence;
-using Mohashan.UserManager.Domain.Entities;
 
 namespace Mohashan.UserManager.Application.Features.Users.Queries.GetUsersExport;
 
@@ -12,12 +11,13 @@ public class GetUsersExportQueryHandler : IRequestHandler<GetUsersExportQuery, U
     private readonly IUserRepository _userRepository;
     private readonly ICsvExporter _csvExporter;
 
-    public GetUsersExportQueryHandler(IMapper mapper,IUserRepository userRepository,ICsvExporter csvExporter)
+    public GetUsersExportQueryHandler(IMapper mapper, IUserRepository userRepository, ICsvExporter csvExporter)
     {
         _mapper = mapper;
         _userRepository = userRepository;
         _csvExporter = csvExporter;
     }
+
     public async Task<UserExportFileVm> Handle(GetUsersExportQuery request, CancellationToken cancellationToken)
     {
         var allUsers = _mapper.Map<List<UserExportDto>>(await _userRepository.GetUserListWithTypeAsync()).OrderBy(c => c.Name).ToList();

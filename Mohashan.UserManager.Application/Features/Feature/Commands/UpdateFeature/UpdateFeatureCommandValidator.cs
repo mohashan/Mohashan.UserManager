@@ -14,7 +14,6 @@ public class UpdateFeatureCommandValidator : AbstractValidator<UpdateFeatureComm
             .NotEmpty().WithMessage("{PropertyName} is required")
             .MustAsync(IsFeatureExist).WithMessage("{PropertyName} is not exist");
 
-
         RuleFor(c => c.Name)
             .MaximumLength(50).WithMessage("{PropertyName} length must be less than 50");
     }

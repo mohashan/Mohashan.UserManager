@@ -14,6 +14,7 @@ public class GetGroupDetailQueryHandler : IRequestHandler<GetGroupDetailQuery, G
         _mapper = mapper;
         _groupRepository = groupRepository;
     }
+
     public async Task<GroupDetailVm> Handle(GetGroupDetailQuery request, CancellationToken cancellationToken)
     {
         var group = await _groupRepository.GetByIdAsync(request.Id);

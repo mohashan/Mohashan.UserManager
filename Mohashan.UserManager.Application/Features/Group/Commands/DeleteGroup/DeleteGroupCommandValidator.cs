@@ -14,6 +14,7 @@ public class DeleteGroupCommandValidator : AbstractValidator<DeleteGroupCommand>
             .NotEmpty().WithMessage("{PropertyName} is required")
             .MustAsync(IsGroupExist).WithMessage("{PropertyName} is not exist");
     }
+
     private async Task<bool> IsGroupExist(Guid id, CancellationToken cancellationToken)
     {
         return await _groupRepository.GetByIdAsync(id) != null;

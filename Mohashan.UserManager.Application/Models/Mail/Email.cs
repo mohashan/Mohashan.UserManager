@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Mohashan.UserManager.Application.Models.Mail;
+﻿namespace Mohashan.UserManager.Application.Models.Mail;
 
 public class Email
 {

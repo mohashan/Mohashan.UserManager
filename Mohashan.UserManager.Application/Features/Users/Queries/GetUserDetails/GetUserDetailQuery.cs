@@ -6,5 +6,3 @@ public class GetUserDetailQuery : IRequest<UserDetailVm>
 {
     public Guid Id { get; set; }
 }
-
-

@@ -2,11 +2,6 @@
 using Mohashan.UserManager.Application.Contracts.Persistence;
 using Mohashan.UserManager.Application.Exceptions;
 using Mohashan.UserManager.Domain.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mohashan.UserManager.Persistence.Repositories;
 
@@ -18,6 +13,7 @@ public class BaseRepository<T> : IAsyncRepository<T> where T : BaseEntity
     {
         _dbContext = dbContext;
     }
+
     public async Task<T> AddAsync(T entity)
     {
         await _dbContext.Set<T>().AddAsync(entity);
@@ -27,7 +23,7 @@ public class BaseRepository<T> : IAsyncRepository<T> where T : BaseEntity
 
     public async Task DeleteAsync(Guid id)
     {
-        var entry = _dbContext.Set<T>().FirstOrDefaultAsync(c=>c.Id == id);
+        var entry = _dbContext.Set<T>().FirstOrDefaultAsync(c => c.Id == id);
         if (entry == null)
         {
             throw new NotFoundException(nameof(T), id);
@@ -37,9 +33,9 @@ public class BaseRepository<T> : IAsyncRepository<T> where T : BaseEntity
         await _dbContext.SaveChangesAsync();
     }
 
-    public virtual async Task<IReadOnlyList<T>> GetAllPagedAsync(int count = 10,int pageNum = 1)
+    public virtual async Task<IReadOnlyList<T>> GetAllPagedAsync(int count = 10, int pageNum = 1)
     {
-        return await _dbContext.Set<T>().OrderBy(c=>c.CreatedDateTime).Skip((pageNum - 1) * count).Take(count).ToListAsync();
+        return await _dbContext.Set<T>().OrderBy(c => c.CreatedDateTime).Skip((pageNum - 1) * count).Take(count).ToListAsync();
     }
 
     public async Task<IReadOnlyList<T>> GetListAsync()
@@ -50,7 +46,7 @@ public class BaseRepository<T> : IAsyncRepository<T> where T : BaseEntity
     public virtual async Task<T> GetByIdAsync(Guid id)
     {
         return await _dbContext.Set<T>()
-                               .FirstOrDefaultAsync(c=>c.Id == id);
+                               .FirstOrDefaultAsync(c => c.Id == id);
     }
 
     public async Task UpdateAsync(T entity)
@@ -59,4 +55,3 @@ public class BaseRepository<T> : IAsyncRepository<T> where T : BaseEntity
         await _dbContext.SaveChangesAsync();
     }
 }
- 

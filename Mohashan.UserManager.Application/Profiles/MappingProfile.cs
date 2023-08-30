@@ -16,23 +16,17 @@ using Mohashan.UserManager.Application.Features.Users.Queries.GetUserFeatures;
 using Mohashan.UserManager.Application.Features.Users.Queries.GetUsersExport;
 using Mohashan.UserManager.Application.Features.Users.Queries.GetUsersList;
 using Mohashan.UserManager.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mohashan.UserManager.Application.Profiles;
 
-public class MappingProfile:Profile
+public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        CreateMap<User,UsersListVm>().ReverseMap();
+        CreateMap<User, UsersListVm>().ReverseMap();
         CreateMap<User, UserDetailVm>().ReverseMap();
         CreateMap<User, GroupUsersListVm>().ReverseMap();
-        CreateMap<UserType,UserTypeDto>();
-
+        CreateMap<UserType, UserTypeDto>();
 
         CreateMap<UserFeature, UserFeaturesDto>()
             .ForMember(c => c.FeatureName, opt => opt.MapFrom(c => c.Feature.Name))
@@ -50,10 +44,10 @@ public class MappingProfile:Profile
         CreateMap<Feature, CreateFeatureCommand>().ReverseMap();
         CreateMap<Feature, UpdateFeatureCommand>().ReverseMap();
 
-        CreateMap<User,CreateUserCommand>().
-            ForMember(c=>c.Type,opt=>opt.MapFrom(d=>d.UserTypeId)).ReverseMap();
-        CreateMap<User,UpdateUserCommand>().ReverseMap();
-        CreateMap<User,DeleteUserCommand>().ReverseMap();
+        CreateMap<User, CreateUserCommand>().
+            ForMember(c => c.Type, opt => opt.MapFrom(d => d.UserTypeId)).ReverseMap();
+        CreateMap<User, UpdateUserCommand>().ReverseMap();
+        CreateMap<User, DeleteUserCommand>().ReverseMap();
         CreateMap<User, UserExportDto>().ReverseMap();
         CreateMap<User, CreateUserCommandResponse>().ReverseMap();
     }

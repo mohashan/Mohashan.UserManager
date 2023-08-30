@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Mohashan.UserManager.Application.Contracts.Persistence;
-using Mohashan.UserManager.Application.Features.Users.Queries.GetGroupUsers;
 using Mohashan.UserManager.Application.Features.Users.Queries.GetUserFeatures;
 using Mohashan.UserManager.Application.Profiles;
 using Mohashan.UserManager.Application.UnitTests.Mocks;
@@ -14,6 +13,7 @@ public class GetUserFeaturesQueryHandlerTests
     private readonly IMapper _mapper;
     private readonly Mock<IUserRepository> _mockUserRepository;
     private readonly GetUserFeaturesQuery userFeaturesQuery;
+
     public GetUserFeaturesQueryHandlerTests()
     {
         _mockUserRepository = RepositoryMocks.GetUserRepository();
@@ -48,5 +48,4 @@ public class GetUserFeaturesQueryHandlerTests
         result.ShouldNotBeNull();
         result.Count.ShouldBe(0);
     }
-
 }

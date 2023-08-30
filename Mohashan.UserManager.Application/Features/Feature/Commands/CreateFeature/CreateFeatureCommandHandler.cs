@@ -2,7 +2,6 @@
 using MediatR;
 using Mohashan.UserManager.Application.Contracts.Infrastructure;
 using Mohashan.UserManager.Application.Contracts.Persistence;
-using Mohashan.UserManager.Application.Exceptions;
 
 namespace Mohashan.UserManager.Application.Features.Feature.Commands.CreateFeature;
 
@@ -20,6 +19,7 @@ public class CreateFeatureCommandHandler : IRequestHandler<CreateFeatureCommand,
         _featureRepository = featureRepository;
         _emailService = emailService;
     }
+
     public async Task<CreateFeatureCommandResponse> Handle(CreateFeatureCommand request, CancellationToken cancellationToken)
     {
         CreateFeatureCommandResponse response = new CreateFeatureCommandResponse();
@@ -27,11 +27,11 @@ public class CreateFeatureCommandHandler : IRequestHandler<CreateFeatureCommand,
         var validatorResult = validator.Validate(request);
         if (!validatorResult.IsValid)
         {
-            response.ValidationErrors = validatorResult.Errors.Select(c=>c.ErrorMessage).ToList();
+            response.ValidationErrors = validatorResult.Errors.Select(c => c.ErrorMessage).ToList();
             response.Success = false;
             return response;
         }
-        
+
         var feature = await _featureRepository.AddAsync(_mapper.Map<Domain.Entities.Feature>(request));
 
         var mail = new Models.Mail.Email
@@ -47,7 +47,7 @@ public class CreateFeatureCommandHandler : IRequestHandler<CreateFeatureCommand,
         }
         catch (Exception ex)
         {
-            // If SMS couldn't send, The Application shouldn't stop working 
+            // If SMS couldn't send, The Application shouldn't stop working
         }
 
         response.Data = _mapper.Map<CreateFeatureResponseDto>(feature);

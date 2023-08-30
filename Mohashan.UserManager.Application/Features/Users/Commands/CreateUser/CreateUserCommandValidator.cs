@@ -1,15 +1,9 @@
 ﻿using FluentValidation;
 using Mohashan.UserManager.Application.Contracts.Persistence;
-using Mohashan.UserManager.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mohashan.UserManager.Application.Features.Users.Commands.CreateUser;
 
-public class CreateUserCommandValidator:AbstractValidator<CreateUserCommand>
+public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
 {
     private readonly IUserRepository _userRepository;
 
@@ -26,7 +20,7 @@ public class CreateUserCommandValidator:AbstractValidator<CreateUserCommand>
             .NotEmpty().WithMessage("{PropertyName} must be assigned");
     }
 
-    private async Task<bool> UsernameIsUnique(string userName,CancellationToken cancellationToken)
+    private async Task<bool> UsernameIsUnique(string userName, CancellationToken cancellationToken)
     {
         return await _userRepository.UsernameIsUnique(userName);
     }

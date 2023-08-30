@@ -14,7 +14,7 @@ public class UserFeatureConfiguration : IEntityTypeConfiguration<UserFeature>
         builder.Property(c => c.UserId)
             .IsRequired();
 
-        builder.Property(c=>c.Value)
+        builder.Property(c => c.Value)
             .IsRequired()
             .HasMaxLength(100);
 

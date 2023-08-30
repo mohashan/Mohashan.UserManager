@@ -7,8 +7,5 @@ public class GroupRepository : BaseRepository<Group>, IGroupRepository
 {
     public GroupRepository(UserManagerDbContext dbContext) : base(dbContext)
     {
-
     }
-
-
 }

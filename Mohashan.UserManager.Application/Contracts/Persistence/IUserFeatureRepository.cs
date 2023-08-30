@@ -4,6 +4,5 @@ namespace Mohashan.UserManager.Application.Contracts.Persistence
 {
     public interface IUserFeatureRepository : IAsyncRepository<UserFeature>
     {
-
     }
 }

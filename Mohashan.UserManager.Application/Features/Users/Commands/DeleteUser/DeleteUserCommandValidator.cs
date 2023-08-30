@@ -1,15 +1,10 @@
 ﻿using FluentValidation;
 using Mohashan.UserManager.Application.Contracts.Persistence;
 using Mohashan.UserManager.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mohashan.UserManager.Application.Features.Users.Commands.DeleteUser;
 
-public class DeleteUserCommandValidator:AbstractValidator<DeleteUserCommand>
+public class DeleteUserCommandValidator : AbstractValidator<DeleteUserCommand>
 {
     private readonly IAsyncRepository<User> _userRepository;
 
@@ -21,7 +16,7 @@ public class DeleteUserCommandValidator:AbstractValidator<DeleteUserCommand>
             .MustAsync(IsUserExist);
     }
 
-    private async Task<bool> IsUserExist(Guid id,CancellationToken cancellationToken)
+    private async Task<bool> IsUserExist(Guid id, CancellationToken cancellationToken)
     {
         return await _userRepository.GetByIdAsync(id) != null;
     }

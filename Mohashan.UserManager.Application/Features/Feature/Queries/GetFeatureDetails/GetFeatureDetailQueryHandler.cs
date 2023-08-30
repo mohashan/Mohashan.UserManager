@@ -9,11 +9,12 @@ public class GetFeatureDetailQueryHandler : IRequestHandler<GetFeatureDetailQuer
     private readonly IMapper _mapper;
     private readonly IAsyncRepository<Domain.Entities.Feature> _featureRepository;
 
-    public GetFeatureDetailQueryHandler(IMapper mapper,IAsyncRepository<Domain.Entities.Feature> featureRepository)
+    public GetFeatureDetailQueryHandler(IMapper mapper, IAsyncRepository<Domain.Entities.Feature> featureRepository)
     {
         _mapper = mapper;
         _featureRepository = featureRepository;
     }
+
     public async Task<FeatureDetailVm> Handle(GetFeatureDetailQuery request, CancellationToken cancellationToken)
     {
         var featureDetail = await _featureRepository.GetByIdAsync(request.Id);

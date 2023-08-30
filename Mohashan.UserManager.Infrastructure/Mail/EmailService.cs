@@ -9,10 +9,12 @@ namespace Mohashan.UserManager.Infrastructure.Mail;
 public class EmailService : IEmailService
 {
     private readonly EmailSettings _emailSettings;
+
     public EmailService(IOptions<EmailSettings> emailSettings)
     {
         _emailSettings = emailSettings.Value;
     }
+
     public async Task<bool> SendEmailAsync(Email email)
     {
         var client = new SendGridClient(_emailSettings.APIKey);

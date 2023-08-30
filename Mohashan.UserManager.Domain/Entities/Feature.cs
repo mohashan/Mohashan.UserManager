@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
-using Mohashan.UserManager.Domain.Common;
+﻿using Mohashan.UserManager.Domain.Common;
 
 namespace Mohashan.UserManager.Domain.Entities
 {
@@ -13,5 +10,4 @@ namespace Mohashan.UserManager.Domain.Entities
         public string? Description { get; set; }
         public virtual ICollection<UserFeature>? UserFeatures { get; set; }
     }
-
 }

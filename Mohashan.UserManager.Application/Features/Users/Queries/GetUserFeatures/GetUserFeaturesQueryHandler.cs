@@ -14,6 +14,7 @@ public class GetUserFeaturesQueryHandler : IRequestHandler<GetUserFeaturesQuery,
         _mapper = mapper;
         _userRepository = userRepository;
     }
+
     public async Task<List<UserFeaturesDto>> Handle(GetUserFeaturesQuery request, CancellationToken cancellationToken)
     {
         var userFeatures = await _userRepository.GetUserFeatures(request.UserId);

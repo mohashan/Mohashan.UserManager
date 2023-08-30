@@ -15,6 +15,7 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand>
         _mapper = mapper;
         _userRepository = userRepository;
     }
+
     public async Task<Unit> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
     {
         var validator = new UpdateUserCommandValidator(_userRepository);
@@ -28,6 +29,4 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand>
         await _userRepository.UpdateAsync(userToUpdate);
         return Unit.Value;
     }
-
-
 }

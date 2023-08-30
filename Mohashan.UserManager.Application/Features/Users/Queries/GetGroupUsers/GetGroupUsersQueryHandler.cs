@@ -9,14 +9,15 @@ public class GetGroupUsersQueryHandler : IRequestHandler<GetGroupUsersQuery, Lis
     private readonly IMapper _mapper;
     private readonly IUserRepository _userRepository;
 
-    public GetGroupUsersQueryHandler(IMapper mapper,IUserRepository userRepository)
+    public GetGroupUsersQueryHandler(IMapper mapper, IUserRepository userRepository)
     {
         _mapper = mapper;
         _userRepository = userRepository;
     }
+
     public async Task<List<GroupUsersListVm>> Handle(GetGroupUsersQuery request, CancellationToken cancellationToken)
     {
-        var Users = (await _userRepository.GetGroupUsers(request.GroupId)).OrderBy(c=>c.Name).ToList();
+        var Users = (await _userRepository.GetGroupUsers(request.GroupId)).OrderBy(c => c.Name).ToList();
 
         return _mapper.Map<List<GroupUsersListVm>>(Users);
     }

@@ -1,13 +1,6 @@
 ﻿using Mohashan.UserManager.Application.Contracts.Persistence;
-using Mohashan.UserManager.Application.Features.Users.Queries.GetUserDetails;
 using Mohashan.UserManager.Domain.Entities;
 using Moq;
-using Shouldly;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
 
 namespace Mohashan.UserManager.Application.UnitTests.Mocks;
 
@@ -15,7 +8,7 @@ public class RepositoryMocks
 {
     public static Mock<IUserRepository> GetUserRepository()
     {
-        var allUsers = users().Where(c=>!c.IsDeleted).ToList();
+        var allUsers = users().Where(c => !c.IsDeleted).ToList();
         var mockUserRepository = new Mock<IUserRepository>();
         mockUserRepository.Setup(repo => repo.GetListAsync()).ReturnsAsync(allUsers);
         mockUserRepository.Setup(repo => repo.GetAllPagedAsync(It.IsAny<int>(), It.IsAny<int>())).ReturnsAsync((int count, int page) =>
@@ -50,7 +43,7 @@ public class RepositoryMocks
         mockUserRepository.Setup(repo => repo.DeleteAsync(It.IsAny<Guid>())).Returns((Guid Id) =>
         {
             var user = allUsers.FirstOrDefault(c => c.Id == Id);
-            if(user is null)
+            if (user is null)
                 throw new ArgumentException();
 
             user.IsDeleted = true;
@@ -71,6 +64,7 @@ public class RepositoryMocks
 
         return mockUserRepository;
     }
+
     public static Mock<IUserTypeRepository> GetUserTypeRepository()
     {
         var allUserTypes = userTypes();
@@ -89,6 +83,7 @@ public class RepositoryMocks
 
         return mockUserTypeRepository;
     }
+
     private static List<UserType> userTypes()
     {
         var userType1Guid = Guid.Parse("{334c067b-e114-4e18-891f-2b7c8e21c25f}");
@@ -108,6 +103,7 @@ public class RepositoryMocks
             },
         };
     }
+
     private static List<User> users()
     {
         var user1Guid = Guid.Parse("{5c56c180-6147-4edf-a969-04b83bd49cfa}");
@@ -154,7 +150,6 @@ public class RepositoryMocks
                             Name= "Email"
                         },
                         Value = "msh200x@gmail.com"
-
                     }
                 },
                 UserTypeId = userType1Guid,

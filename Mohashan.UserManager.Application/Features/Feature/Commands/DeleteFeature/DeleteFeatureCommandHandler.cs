@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using Mohashan.UserManager.Application.Contracts.Persistence;
-using Mohashan.UserManager.Application.Features.Users.Commands.DeleteUser;
 
 namespace Mohashan.UserManager.Application.Features.Feature.Commands.DeleteFeature;
 
@@ -12,6 +11,7 @@ public class DeleteFeatureCommandHandler : IRequestHandler<DeleteFeatureCommand>
     {
         _featureRepository = featureRepository;
     }
+
     public async Task<Unit> Handle(DeleteFeatureCommand request, CancellationToken cancellationToken)
     {
         var validator = new DeleteFeatureCommandValidator(_featureRepository);

@@ -3,21 +3,16 @@ using Mohashan.UserManager.Application.Contracts.Persistence;
 using Mohashan.UserManager.Application.Features.Users.Commands.CreateUser;
 using Mohashan.UserManager.Application.Profiles;
 using Mohashan.UserManager.Application.UnitTests.Mocks;
-using Mohashan.UserManager.Domain.Entities;
 using Moq;
 using Shouldly;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mohashan.UserManager.Application.UnitTests.Users.Commands;
+
 public class CreatUserTests
 {
     private readonly IMapper _mapper;
     private readonly Mock<IUserRepository> _mockUserRepository;
+
     public CreatUserTests()
     {
         _mockUserRepository = RepositoryMocks.GetUserRepository();
@@ -32,7 +27,7 @@ public class CreatUserTests
     [Fact]
     public async Task Handle_ValidUser_AddedToUserRepo()
     {
-        var handler = new CreateUserCommandHandler(_mapper,_mockUserRepository.Object);
+        var handler = new CreateUserCommandHandler(_mapper, _mockUserRepository.Object);
         string username = "HandleValidUserAdd";
         await handler.Handle(new CreateUserCommand { Name = username, Type = Guid.Parse("{334c067b-e114-4e18-891f-2b7c8e21c25f}") },
             CancellationToken.None);
@@ -49,7 +44,7 @@ public class CreatUserTests
     {
         var handler = new CreateUserCommandHandler(_mapper, _mockUserRepository.Object);
         CreateUserCommand userCommand = new CreateUserCommand { Type = Guid.Parse("{334c067b-e114-4e18-891f-2b7c8e21c25f}") };
-        var error = await Should.ThrowAsync<Exceptions.ValidationException>(handler.Handle(userCommand,CancellationToken.None));
+        var error = await Should.ThrowAsync<Exceptions.ValidationException>(handler.Handle(userCommand, CancellationToken.None));
 
         error.ValidationErrors.Count.ShouldBeGreaterThan(0);
         error.ValidationErrors.ShouldContain($"{nameof(userCommand.Name)} is required");

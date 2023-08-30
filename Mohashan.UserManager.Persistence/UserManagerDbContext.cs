@@ -1,22 +1,22 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal;
 using Mohashan.UserManager.Domain.Common;
 using Mohashan.UserManager.Domain.Entities;
 
 namespace Mohashan.UserManager.Persistence;
 
-public class UserManagerDbContext:DbContext
+public class UserManagerDbContext : DbContext
 {
-    public UserManagerDbContext(DbContextOptions<UserManagerDbContext> options ):base(options)
+    public UserManagerDbContext(DbContextOptions<UserManagerDbContext> options) : base(options)
     {
-        
     }
+
     public DbSet<Feature> Features { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<Group> Groups { get; set; }
-    public DbSet<UserType> UserTypes{ get; set; }
+    public DbSet<UserType> UserTypes { get; set; }
     public DbSet<UserGroup> userGroups { get; set; }
     public DbSet<UserFeature> userFeatures { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserManagerDbContext).Assembly);
@@ -46,8 +46,7 @@ public class UserManagerDbContext:DbContext
             CreatedDateTime = DateTime.Now,
             Id = feature1Guid,
             Name = "MobileNumber",
-            
-        }) ;
+        });
 
         modelBuilder.Entity<Feature>().HasData(new Feature
         {
@@ -56,7 +55,6 @@ public class UserManagerDbContext:DbContext
             CreatedDateTime = DateTime.Now,
             Id = feature2Guid,
             Name = "Email",
-
         });
 
         modelBuilder.Entity<UserType>().HasData(new UserType
@@ -138,7 +136,6 @@ public class UserManagerDbContext:DbContext
         });
 
         base.OnModelCreating(modelBuilder);
-
     }
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
@@ -152,12 +149,15 @@ public class UserManagerDbContext:DbContext
                     entry.Entity.DeletedDateTime = DateTime.Now;
                     entry.State = EntityState.Modified;
                     break;
+
                 case EntityState.Modified:
                     entry.Entity.LastModifiedDateTime = DateTime.Now;
                     break;
+
                 case EntityState.Added:
                     entry.Entity.CreatedDateTime = DateTime.Now;
                     break;
+
                 default:
                     break;
             }

@@ -1,6 +1,4 @@
-﻿using Mohashan.UserManager.Domain.Entities;
-
-namespace Mohashan.UserManager.Application.Features.Users.Queries.GetUserDetails;
+﻿namespace Mohashan.UserManager.Application.Features.Users.Queries.GetUserDetails;
 
 public class UserDetailVm
 {

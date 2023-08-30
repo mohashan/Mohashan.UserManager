@@ -4,7 +4,6 @@ namespace Mohashan.UserManager.Domain.Entities
 {
     public class UserFeature : BaseEntity
     {
-
         public Guid UserId { get; set; }
         public User User { get; set; } = default!;
 
@@ -13,5 +12,4 @@ namespace Mohashan.UserManager.Domain.Entities
 
         public string Value { get; set; } = string.Empty;
     }
-
 }

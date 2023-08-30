@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using Mohashan.UserManager.Application.Contracts.Persistence;
-using Mohashan.UserManager.Application.Features.Feature.Commands.DeleteFeature;
 
 namespace Mohashan.UserManager.Application.Features.Group.Commands.DeleteGroup;
 
@@ -12,6 +11,7 @@ public class DeleteGroupCommandHandler : IRequestHandler<DeleteGroupCommand>
     {
         _groupRepository = groupRepository;
     }
+
     public async Task<Unit> Handle(DeleteGroupCommand request, CancellationToken cancellationToken)
     {
         var validator = new DeleteGroupCommandValidator(_groupRepository);

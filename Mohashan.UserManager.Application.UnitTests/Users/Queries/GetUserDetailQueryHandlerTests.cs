@@ -14,6 +14,7 @@ public class GetUserDetailQueryHandlerTests
     private readonly Mock<IUserRepository> _mockUserRepository;
     private readonly Mock<IUserTypeRepository> _mockUserTypeRepository;
     private readonly GetUserDetailQuery userDetailQuery;
+
     public GetUserDetailQueryHandlerTests()
     {
         _mockUserRepository = RepositoryMocks.GetUserRepository();
@@ -30,7 +31,7 @@ public class GetUserDetailQueryHandlerTests
     [Fact]
     public async Task Get_UserDetail_Test()
     {
-        var handler = new GetUserDetailQueryHandler(_mapper, _mockUserRepository.Object,_mockUserTypeRepository.Object);
+        var handler = new GetUserDetailQueryHandler(_mapper, _mockUserRepository.Object, _mockUserTypeRepository.Object);
         userDetailQuery.Id = Guid.Parse("{5c56c180-6147-4edf-a969-04b83bd49cfa}");
 
         var result = await handler.Handle(userDetailQuery, CancellationToken.None);
@@ -48,7 +49,5 @@ public class GetUserDetailQueryHandlerTests
         userDetailQuery.Id = Guid.Parse("{334c067b-e114-4e18-891f-2b7c8e21c25f}");
 
         _ = await Should.ThrowAsync<ArgumentException>(() => handler.Handle(userDetailQuery, CancellationToken.None));
-
     }
 }
-

@@ -5,6 +5,7 @@ using Mohashan.UserManager.Infrastructure;
 using Mohashan.UserManager.Persistence;
 
 namespace Mohashan.UserManager.API;
+
 public static class StartupExtensions
 {
     public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
@@ -18,7 +19,7 @@ public static class StartupExtensions
 
         builder.Services.AddCors(options =>
         {
-            options.AddPolicy("Open",builder=>builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            options.AddPolicy("Open", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
         });
 
         return builder.Build();
@@ -39,7 +40,7 @@ public static class StartupExtensions
 
     public static WebApplication ConfigurePipeline(this WebApplication app)
     {
-        if(app.Environment.IsDevelopment())
+        if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
             app.UseSwaggerUI(c =>
@@ -64,7 +65,7 @@ public static class StartupExtensions
         try
         {
             var context = scope.ServiceProvider.GetService<UserManagerDbContext>();
-            if(context != null)
+            if (context != null)
             {
                 await context.Database.EnsureDeletedAsync();
                 await context.Database.MigrateAsync();
@@ -72,7 +73,6 @@ public static class StartupExtensions
         }
         catch (Exception ex)
         {
-
             throw;
         }
     }

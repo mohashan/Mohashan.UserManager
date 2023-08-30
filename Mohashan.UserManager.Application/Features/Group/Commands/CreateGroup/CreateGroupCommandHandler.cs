@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
 using Mohashan.UserManager.Application.Contracts.Persistence;
-using Mohashan.UserManager.Application.Features.Feature.Commands.CreateFeature;
 
 namespace Mohashan.UserManager.Application.Features.Group.Commands.CreateGroup;
 
@@ -10,11 +9,12 @@ public class CreateGroupCommandHandler : IRequestHandler<CreateGroupCommand, Gui
     private readonly IMapper _mapper;
     private readonly IAsyncRepository<Domain.Entities.Group> _groupRepository;
 
-    public CreateGroupCommandHandler(IMapper mapper,IAsyncRepository<Domain.Entities.Group> groupRepository)
+    public CreateGroupCommandHandler(IMapper mapper, IAsyncRepository<Domain.Entities.Group> groupRepository)
     {
         _mapper = mapper;
         _groupRepository = groupRepository;
     }
+
     public async Task<Guid> Handle(CreateGroupCommand request, CancellationToken cancellationToken)
     {
         var validator = new CreateGroupCommandValidator();

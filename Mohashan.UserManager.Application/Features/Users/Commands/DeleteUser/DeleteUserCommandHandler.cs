@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Mohashan.UserManager.Application.Contracts.Persistence;
 using Mohashan.UserManager.Domain.Entities;
-using System.Collections.Immutable;
 
 namespace Mohashan.UserManager.Application.Features.Users.Commands.DeleteUser;
 
@@ -13,6 +12,7 @@ public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand>
     {
         _userRepository = userRepository;
     }
+
     public async Task<Unit> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
     {
         var validator = new DeleteUserCommandValidator(_userRepository);

@@ -1,11 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Mohashan.UserManager.Application;
 
@@ -38,7 +34,6 @@ public static class ApplicationServiceRegistration
             string errorMessage = sb.ToString();
             //Display or log the error based on your application.
         }
-        
 
         return services;
     }

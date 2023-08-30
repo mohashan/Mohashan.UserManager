@@ -3,12 +3,9 @@ using Mohashan.UserManager.Domain.Entities;
 
 namespace Mohashan.UserManager.Persistence.Repositories;
 
-public class FeatureRepository : BaseRepository<Feature>,IFeatureRepository
+public class FeatureRepository : BaseRepository<Feature>, IFeatureRepository
 {
-    public FeatureRepository(UserManagerDbContext dbContext):base(dbContext)
+    public FeatureRepository(UserManagerDbContext dbContext) : base(dbContext)
     {
-        
     }
-
-
 }

@@ -13,6 +13,7 @@ public class GetGroupUsersQueryHandlerTests
     private readonly IMapper _mapper;
     private readonly Mock<IUserRepository> _mockUserRepository;
     private readonly GetGroupUsersQuery groupUsersQuery;
+
     public GetGroupUsersQueryHandlerTests()
     {
         _mockUserRepository = RepositoryMocks.GetUserRepository();
@@ -47,5 +48,4 @@ public class GetGroupUsersQueryHandlerTests
         result.ShouldNotBeNull();
         result.Count.ShouldBe(0);
     }
-
 }
