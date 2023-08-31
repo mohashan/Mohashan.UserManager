@@ -1,11 +1,40 @@
 ﻿using Mohashan.UserManager.Application.Contracts.Persistence;
 using Mohashan.UserManager.Domain.Entities;
 using Moq;
+using System.Xml.Linq;
 
 namespace Mohashan.UserManager.Application.UnitTests.Mocks;
 
 public class RepositoryMocks
 {
+    public static Mock<IGroupRepository> GetGroupRepository()
+    {
+        var mockGroupRepository = new Mock<IGroupRepository>();
+        var allGroups = groups().Where(c => !c.IsDeleted).ToList();
+        mockGroupRepository.Setup(repo => repo.GetListAsync()).ReturnsAsync(() =>
+        {
+            return allGroups;
+        });
+
+        mockGroupRepository.Setup(repo => repo.GetAllPagedAsync(It.IsAny<int>(), It.IsAny<int>())).ReturnsAsync((int count, int page) =>
+        {
+            return allGroups.OrderBy(c => c.Name).Skip((page - 1) * count).Take(count).ToList();
+        });
+
+        mockGroupRepository.Setup(repo => repo.GetByIdAsync(It.IsAny<Guid>())).ReturnsAsync((Guid id) =>
+        {
+            return allGroups.FirstOrDefault(c => c.Id == id)??throw new ArgumentException($"There is no result for Id : {id}");
+        });
+
+        mockGroupRepository.Setup(repo => repo.AddAsync(It.IsAny<Group>())).ReturnsAsync((Group group) =>
+        {
+            allGroups.Add(group);
+            group.Id = Guid.NewGuid();
+            return group;
+        });
+        return mockGroupRepository;
+
+    }
     public static Mock<IUserRepository> GetUserRepository()
     {
         var allUsers = users().Where(c => !c.IsDeleted).ToList();
@@ -172,6 +201,20 @@ public class RepositoryMocks
             {
                 Id = user2Guid,
                 Name = "testUser1",
+                UserGroup = new List<UserGroup>
+                {
+                    new UserGroup
+                    {
+                        Id= userGroup2Guid,
+                        GroupId = group2Guid,
+                        UserId = user2Guid,
+                        Group = new Group
+                        {
+                            Id = group2Guid,
+                            Name = "ReporterGroup",
+                        }
+                    }
+                }
             },
             new User
             {
@@ -222,6 +265,24 @@ public class RepositoryMocks
             {
                 Id = Guid.NewGuid(),
                 Name = "testUser11",
+            },
+        };
+    }
+
+    private static List<Group> groups()
+    {
+        var group1Id = Guid.Parse("{C189A30E-E1A0-4D1C-BBAD-59AC4F10A94D}");
+        var group2Id = Guid.Parse("{8FAD7B4D-5157-421F-922E-2FA4405B6081}");
+        return new List<Group> {
+            new Group
+            {
+                Id =group1Id,
+                Name = "AdminGroup"
+            },
+            new Group
+            {
+                Id = group2Id,
+                Name = "ReporterGroup"
             },
         };
     }

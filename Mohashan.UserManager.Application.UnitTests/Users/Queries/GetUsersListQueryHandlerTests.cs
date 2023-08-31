@@ -8,13 +8,13 @@ using Shouldly;
 
 namespace Mohashan.UserManager.Application.UnitTests.Users.Queries;
 
-public class GetUsersListQueryHandlerTests
+public class GetGroupsListQueryHandlerTests
 {
     private readonly IMapper _mapper;
     private readonly Mock<IUserRepository> _mockUserRepository;
     private readonly GetUsersListQuery usersListQuery;
 
-    public GetUsersListQueryHandlerTests()
+    public GetGroupsListQueryHandlerTests()
     {
         _mockUserRepository = RepositoryMocks.GetUserRepository();
         var configurationProvider = new MapperConfiguration(cfg =>
