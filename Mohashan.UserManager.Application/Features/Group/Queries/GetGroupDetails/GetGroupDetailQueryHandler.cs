@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Mohashan.UserManager.Application.Contracts.Persistence;
+using Mohashan.UserManager.Domain.Entities;
 
 namespace Mohashan.UserManager.Application.Features.Group.Queries.GetGroupDetails;
 
@@ -18,6 +19,9 @@ public class GetGroupDetailQueryHandler : IRequestHandler<GetGroupDetailQuery, G
     public async Task<GroupDetailVm> Handle(GetGroupDetailQuery request, CancellationToken cancellationToken)
     {
         var group = await _groupRepository.GetByIdAsync(request.Id);
+
+        if (group is null)
+            throw new ArgumentException("Group is not exist");
 
         var groupVm = _mapper.Map<GroupDetailVm>(group);
         groupVm.Users = _mapper.Map<List<UserGroupDto>>(group.UserGroups?.ToList());

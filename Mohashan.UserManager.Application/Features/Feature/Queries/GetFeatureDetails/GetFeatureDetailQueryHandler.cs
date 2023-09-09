@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Mohashan.UserManager.Application.Contracts.Persistence;
+using Mohashan.UserManager.Domain.Entities;
 
 namespace Mohashan.UserManager.Application.Features.Feature.Queries.GetFeatureDetails;
 
@@ -18,7 +19,8 @@ public class GetFeatureDetailQueryHandler : IRequestHandler<GetFeatureDetailQuer
     public async Task<FeatureDetailVm> Handle(GetFeatureDetailQuery request, CancellationToken cancellationToken)
     {
         var featureDetail = await _featureRepository.GetByIdAsync(request.Id);
-
+        if (featureDetail is null)
+            throw new ArgumentException("featureDetail is not exist");
         return _mapper.Map<FeatureDetailVm>(featureDetail);
     }
 }

@@ -7,6 +7,20 @@ namespace Mohashan.UserManager.Application.UnitTests.Mocks;
 
 public class RepositoryMocks
 {
+    public static Mock<IFeatureRepository> GetFeatureRepository()
+    {
+        var mockFeatureRepository = new Mock<IFeatureRepository>();
+
+        var allFeatures = features().Where(c=>!c.IsDeleted).ToList();
+
+        mockFeatureRepository.Setup(repo => repo.GetByIdAsync(It.IsAny<Guid>())).ReturnsAsync((Guid Id) =>
+        {
+            return allFeatures.FirstOrDefault(c => c.Id == Id);
+        });
+
+
+        return mockFeatureRepository;
+    }
     public static Mock<IGroupRepository> GetGroupRepository()
     {
         var mockGroupRepository = new Mock<IGroupRepository>();
@@ -23,7 +37,7 @@ public class RepositoryMocks
 
         mockGroupRepository.Setup(repo => repo.GetByIdAsync(It.IsAny<Guid>())).ReturnsAsync((Guid id) =>
         {
-            return allGroups.FirstOrDefault(c => c.Id == id)??throw new ArgumentException($"There is no result for Id : {id}");
+            return allGroups.FirstOrDefault(c => c.Id == id);
         });
 
         mockGroupRepository.Setup(repo => repo.AddAsync(It.IsAny<Group>())).ReturnsAsync((Group group) =>
@@ -130,6 +144,38 @@ public class RepositoryMocks
                 Id = userType2Guid,
                 Name = "User Type 2"
             },
+        };
+    }
+
+    private static List<Feature> features()
+    {
+        var featureId1 = Guid.Parse("{9AB012A8-C5B6-463B-85FE-AEFD20E2C477}");
+        var featureId2 = Guid.Parse("{C5FF21D2-8850-4E50-A7AF-3B325E9F2521}");
+        var featureId3 = Guid.Parse("{8918CC80-E84B-4A32-88DA-FF5C53C8930A}");
+        return new List<Feature>
+        {
+            new Feature
+            {
+                Id = featureId1,
+                DataType = typeof(Int32).Name,
+                Name = "Email",
+                Description = "User email"
+            },
+            new Feature
+            {
+                Id = featureId2,
+                DataType = typeof(DateTime).Name,
+                Name = "Birthdate",
+                Description = "User birthdate"
+            },
+            new Feature
+            {
+                Id = featureId3,
+                DataType = typeof(string).Name,
+                Name = "MobileNo",
+                Description = "User Mobile Number"
+            },
+
         };
     }
 
