@@ -4,5 +4,7 @@ namespace Mohashan.UserManager.Application.Contracts.Persistence
 {
     public interface IGroupRepository : IAsyncRepository<Group>
     {
+        Task<bool> GroupNameIsUnique(string groupName);
+
     }
 }

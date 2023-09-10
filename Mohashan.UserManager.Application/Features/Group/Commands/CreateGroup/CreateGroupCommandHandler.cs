@@ -7,9 +7,9 @@ namespace Mohashan.UserManager.Application.Features.Group.Commands.CreateGroup;
 public class CreateGroupCommandHandler : IRequestHandler<CreateGroupCommand, Guid>
 {
     private readonly IMapper _mapper;
-    private readonly IAsyncRepository<Domain.Entities.Group> _groupRepository;
+    private readonly IGroupRepository _groupRepository;
 
-    public CreateGroupCommandHandler(IMapper mapper, IAsyncRepository<Domain.Entities.Group> groupRepository)
+    public CreateGroupCommandHandler(IMapper mapper, IGroupRepository groupRepository)
     {
         _mapper = mapper;
         _groupRepository = groupRepository;
@@ -17,8 +17,8 @@ public class CreateGroupCommandHandler : IRequestHandler<CreateGroupCommand, Gui
 
     public async Task<Guid> Handle(CreateGroupCommand request, CancellationToken cancellationToken)
     {
-        var validator = new CreateGroupCommandValidator();
-        var validatorResult = validator.Validate(request);
+        var validator = new CreateGroupCommandValidator(_groupRepository);
+        var validatorResult = await validator.ValidateAsync(request);
         if (!validatorResult.IsValid)
         {
             throw new Exceptions.ValidationException(validatorResult);

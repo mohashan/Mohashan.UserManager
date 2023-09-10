@@ -46,6 +46,43 @@ public class RepositoryMocks
             group.Id = Guid.NewGuid();
             return group;
         });
+
+        mockGroupRepository.Setup(repo => repo.AddAsync(It.IsAny<Group>())).ReturnsAsync((Group group) =>
+        {
+            group.Id = Guid.NewGuid();
+            allGroups.Add(group);
+            group.CreatedDateTime = DateTime.Now;
+            group.CreatedBy = "Tester";
+            return group;
+        });
+
+        mockGroupRepository.Setup(repo => repo.UpdateAsync(It.IsAny<Group>())).Returns((Group group) =>
+        {
+            var newGroup = allGroups.FirstOrDefault(c => c.Id == group.Id);
+            if (newGroup is null)
+                throw new ArgumentException();
+            newGroup.Name = group.Name;
+            newGroup.LastModifiedDateTime = DateTime.UtcNow;
+            newGroup.LastModifiedBy = "Tester";
+            return Task.CompletedTask;
+        });
+
+        mockGroupRepository.Setup(repo => repo.DeleteAsync(It.IsAny<Guid>())).Returns((Guid Id) =>
+        {
+            var group = allGroups.FirstOrDefault(c => c.Id == Id);
+            if (group is null)
+                throw new ArgumentException();
+
+            group.IsDeleted = true;
+            group.DeletedDateTime = DateTime.UtcNow;
+            group.DeletedBy = "Tester";
+            return Task.CompletedTask;
+        });
+
+        mockGroupRepository.Setup(repo => repo.GroupNameIsUnique(It.IsAny<string>())).ReturnsAsync((string groupName) =>
+        {
+            return !allGroups.Exists(c=>c.Name == groupName);
+        });
         return mockGroupRepository;
 
     }
