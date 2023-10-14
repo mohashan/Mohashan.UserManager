@@ -31,7 +31,7 @@ public class GetGroupsListQueryHandlerTests
     public async Task Get_GroupList_Test()
     {
         var handler = new GetGroupListQueryHandler(_mapper, _mockGroupRepository.Object);
-        groupListQuery.PageCount = 10;
+        groupListQuery.PageCount = 2;
         groupListQuery.PageNumber = 1;
 
         var result = await handler.Handle(groupListQuery, CancellationToken.None);

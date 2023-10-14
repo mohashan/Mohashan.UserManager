@@ -18,7 +18,7 @@ public class UpdateGroupCommandHandler : IRequestHandler<UpdateGroupCommand>
     public async Task<Unit> Handle(UpdateGroupCommand request, CancellationToken cancellationToken)
     {
         var validator = new UpdateGroupCommandValidator(_groupRepository);
-        var validationResult = validator.Validate(request);
+        var validationResult = await validator.ValidateAsync(request);
         if (!validationResult.IsValid)
         {
             throw new Exceptions.ValidationException(validationResult);

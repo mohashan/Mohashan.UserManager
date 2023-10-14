@@ -356,6 +356,7 @@ public class RepositoryMocks
     {
         var group1Id = Guid.Parse("{C189A30E-E1A0-4D1C-BBAD-59AC4F10A94D}");
         var group2Id = Guid.Parse("{8FAD7B4D-5157-421F-922E-2FA4405B6081}");
+        var group3Id = Guid.Parse("{2846D00C-0391-4BC7-A903-65B79D707A7F}");
         return new List<Group> {
             new Group
             {
@@ -366,6 +367,11 @@ public class RepositoryMocks
             {
                 Id = group2Id,
                 Name = "ReporterGroup"
+            },
+            new Group
+            {
+                Id = group3Id,
+                Name = "TestGroup"
             },
         };
     }
